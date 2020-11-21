@@ -1,4 +1,6 @@
-# Erharta 
+# Erharta
+
+Login info: ssh aadas@vacc-user2.uvm.edu
 
 #### Where are our Erharta files?
 
