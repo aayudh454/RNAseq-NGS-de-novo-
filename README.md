@@ -68,3 +68,8 @@ Submit your job and check status of your job
 [aadas@bluemoon-user2 Ba]$ sbatch filename.sh 
 ```
 
+Check your status of your job
+
+```
+[aadas@bluemoon-user2 Ba]$ squeue -u aadas
+```
