@@ -21,7 +21,7 @@ cp ECC1_Illumina13_S13_L002_R1_001.fastq.gz ~/Erharta_data_analysis/Erharta_trim
 ```
 [aadas@bluemoon-user2 ~]$ vi trimmomatic.sh
 ```
-
+To reopen **vim** filename.sh
 Now press **i** to insert 
 
 Copy and paste everything present in the new script from this sample one
