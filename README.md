@@ -26,7 +26,9 @@ Now press **i** to insert
 
 Copy and paste everything present in the new script from this sample one
 
-1) change workDIR= 
+1) change workDIR= navigate to the the folder where you have separated the R1 and R2. Now use 'pwd' command.
+
+use workDIR=/users/a/a/aadas/Erharta_data_analysis/Erharta_trimming/Control_1
 
 
 ```
@@ -45,7 +47,7 @@ Copy and paste everything present in the new script from this sample one
 ulimit -s unlimited
 ###CHANGE THE DIRECTORY ACCORDINGLY, THE FOLLOWING SETTINGS ARE FOR MY ACCOUNT
 SOFTWARE=/users/a/a/aadas/Trimmomatic-0.36
-workDIR=/users/a/a/aadas/Ba
+workDIR=/users/a/a/aadas/Erharta_data_analysis/Erharta_trimming/Control_1
 cd $workDIR
 #####TRIMMING COMMANDS AND PARAMETERS
 java -jar $SOFTWARE/trimmomatic-0.36.jar PE -phred33 $workDIR/Ba1x_precold.R1.fastq.gz $workDIR/Ba1x_precold.R2.fastq.gz $workDIR/Ba1x_precold.R1.trimmo.fq.gz $workDIR/Ba1x_precold.R1.unpaired.fq.gz $workDIR/Ba1x_precold.R2.trimmo.fq.gz $workDIR/Ba1x_precold.R2.unpaired.fq.gz ILLUMINACLIP:TruSeq3-PE-2.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:5:20 MINLEN:40
