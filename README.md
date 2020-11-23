@@ -14,6 +14,12 @@ C= Control, D=Drought, F=Freezing
 First you should in the folder from where you will copy then direct which folder it is going
 
 ```
+[aadas@vacc-user2 ~]$ cd ~/Erharta/Preston_JP_iLabs_14958_PR75_090820/ECC1
+```
+
+Now to initiate copy-
+
+```
 cp ECC1_Illumina13_S13_L002_R1_001.fastq.gz ~/Erharta_data_analysis/Erharta_trimming/
 ```
  Now to create a blank script
