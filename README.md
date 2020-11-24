@@ -1,4 +1,4 @@
-# Erharta
+# Erharta Transcriptome pipeline 
 
 Login info: ssh aadas@vacc-user2.uvm.edu
 
@@ -91,7 +91,7 @@ Check your status of your job
 [aadas@bluemoon-user2 Ba]$ squeue -u aadas
 ```
 
-What does all this things actually mean?
+## What does all this things actually mean?
 
 Based on the sequencing (paired end or signle end)  you need to follow this protocol BUT modify other factors! Don't copy deto!!!!!
 
