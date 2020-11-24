@@ -68,6 +68,17 @@ and **esc**, **:wq** to save and quit.
 
 **:q!** only quit without saving.
 
+ Make your script executable
+
+you should be the folder where you saved your script
+
+```
+[aadas@bluemoon-user2 Ba]$ chmod 700 trimmomatic.sh
+```
+
+**700**=file's owner may read, write, and execute the file.
+
+
 Submit your job and check status of your job
 
 ```
