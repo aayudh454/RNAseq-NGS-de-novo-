@@ -90,3 +90,43 @@ Check your status of your job
 ```
 [aadas@bluemoon-user2 Ba]$ squeue -u aadas
 ```
+
+What does all this things actually mean?
+
+Based on the sequencing (paired end or signle end)  you need to follow this protocol BUT modify other factors! Don't copy deto!!!!!
+
+**Paired End:**
+
+java -jar trimmomatic-0.35.jar PE -phred33 input_forward.fq.gz input_reverse.fq.gz output_forward_paired.fq.gz output_forward_unpaired.fq.gz output_reverse_paired.fq.gz output_reverse_unpaired.fq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+
+This will perform the following:
+
+- Remove adapters (ILLUMINACLIP:TruSeq3-PE.fa:2:30:10)
+- Remove leading low quality or N bases (below quality 3) (LEADING:3)
+- Remove trailing low quality or N bases (below quality 3) (TRAILING:3)
+- Scan the read with a 4-base wide sliding window, cutting when the average quality per base drops below 15 (SLIDINGWINDOW:4:15)
+- Drop reads below the 36 bases long (MINLEN:36)
+
+**Single End:**
+
+java -jar trimmomatic-0.35.jar SE -phred33 input.fq.gz output.fq.gz ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+
+This will perform the same steps, using the single-ended adapter file
+
+i. You need to check **Submitting Jobs to the Cluster**-
+
+TO KNOW ABOUT BATCH SYSTEM OF UVM - https://www.uvm.edu/vacc/kb/knowledge-base/write-submit-job-bluemoon/
+
+first part of the script explains that details
+
+ii. Now you need to specify where your software is present i.e. the Trimmomatic-0.36 which is in your main directory **/users/a/a/aadas/Trimmomatic-0.36**
+
+iii. Specify your working directory-**/users/a/a/aadas/Ba** (because your R1 and R2 files are in Ba)
+
+iv. TRIMMING COMMANDS AND PARAMETERS
+
+a. change software version from as **trimmomatic-0.36**
+
+b. Now the **first 2 files are your input file**, so after $workDIR/"name of the file" space [here R1 and R2 is the main change]
+c. Last 4 files are **output files**.  
+
