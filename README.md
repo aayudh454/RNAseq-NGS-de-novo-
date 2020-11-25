@@ -168,3 +168,13 @@ Now copy all **R1_paired.fq.gz** and **R2.paired.fq.gz** of all treatment into a
 [aadas@vacc-user2 Concatenation_Erharta]$ zcat *R2.paired.fq.gz > Erharta.R2.trimmed.fq &
 [2] 32386
 ```
+
+**After finishing the concatenation check the "sequence header for both R1 and R2"-it should be same**
+
+```
+[aadas@vacc-user2 Concatenation_Erharta]$ grep -c "@" Erharta.R1.trimmed.fq
+150563683
+[aadas@vacc-user2 Concatenation_Erharta]$ grep -c "@" Erharta.R2.trimmed.fq
+150563683
+```
+both shows 150563683; That means R1 and R2 has same reads.
