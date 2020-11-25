@@ -178,3 +178,14 @@ Now copy all **R1_paired.fq.gz** and **R2.paired.fq.gz** of all treatment into a
 150563683
 ```
 both shows 150563683; That means R1 and R2 has same reads.
+
+
+## Assembly
+
+Move concatenated R1 and R2 trimmed files to a different folder
+
+```
+[aadas@vacc-user2 Concatenation_Erharta]$ cp Erharta.R1.trimmed.fq /users/a/a/aadas/Erharta_data_analysis/assembly_erharta
+[aadas@vacc-user2 Concatenation_Erharta]$ cp Erharta.R2.trimmed.fq /users/a/a/aadas/Erharta_data_analysis/assembly_erharta
+```
+
