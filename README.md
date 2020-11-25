@@ -156,9 +156,15 @@ Now copy all **R1_paired.fq.gz** and **R2.paired.fq.gz** of all treatment into a
 -rw-r--r-- 1 aadas pi-jcpresto  287248833 Nov 24 21:37 ECF3_R1_paired.fq.gz
 -rw-r--r-- 1 aadas pi-jcpresto  299917169 Nov 24 21:38 ECF3_R2.paired.fq.gz
 ```
-
+**Now concatenate all the R1.** it takes 30in or more, wait until size increase 
 
 ```
 [aadas@vacc-user2 Concatenation_Erharta]$ zcat *R1_paired.fq.gz > Erharta.R1.trimmed.fq &
 [1] 31773
+```
+**Now concatenate all the R2**
+
+```
+[aadas@vacc-user2 Concatenation_Erharta]$ zcat *R2.paired.fq.gz > Erharta.R2.trimmed.fq &
+[2] 32386
 ```
