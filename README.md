@@ -135,3 +135,11 @@ c. Last 4 files are **output files**.
 ## Concatenation
 
 Now copy all **R1_paired.fq.gz** and **R2.paired.fq.gz** of all treatment into a concatenation folder 
+
+
+
+
+```
+[aadas@vacc-user2 Concatenation_Erharta]$ zcat *R1_paired.fq.gz > Erharta.R1.trimmed.fq &
+[1] 31773
+```
