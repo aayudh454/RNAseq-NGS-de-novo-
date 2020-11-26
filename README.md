@@ -189,7 +189,7 @@ Move concatenated R1 and R2 trimmed files to a different folder
 [aadas@vacc-user2 Concatenation_Erharta]$ cp Erharta.R2.trimmed.fq /users/a/a/aadas/Erharta_data_analysis/assembly_erharta
 ```
 
-
+**Sript for assembly for single ended by trinity 2.1.1**
 
 ```
 #!/bin/bash
@@ -215,3 +215,10 @@ cd $WORKINGDIR
 
 /users/a/a/aadas/Bin/trinityrnaseq-2.1.1/Trinity --seqType fq --normalize_reads --max_memory 256G --left /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/ Erharta.R1.trimmed.fq –right /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/Erharta.R2.trimmed.fq --CPU 24
 ```
+**What all those mean?**
+
+Use all reads from an individual (all conditions) to capture most genes
+Read files may be gzipped (as in this example) or not (then they should not have the “.gz” ending)
+Paired-end reads specified with --left and --right. If only single-end, use --single instead.
+256G is the maximum memory to be used at any stage which allows memory limitation (jellyfish, sorting, etc.)
+At most 24 CPU cores will be used in any stage.
