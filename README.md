@@ -189,3 +189,29 @@ Move concatenated R1 and R2 trimmed files to a different folder
 [aadas@vacc-user2 Concatenation_Erharta]$ cp Erharta.R2.trimmed.fq /users/a/a/aadas/Erharta_data_analysis/assembly_erharta
 ```
 
+
+
+```
+#!/bin/bash
+
+#SBATCH --partition=bigmem
+#SBATCH --nodes=1
+#SBATCH --ntasks=24
+#SBATCH --time=30:00:00
+#SBATCH --mem=256G
+#SBATCH --job
+#SBATCH --output=Aayudh_assembly.out
+#SBATCH --mail-user=aadas@uvm.edu
+#SBATCH --mail-type=ALL
+
+module load samtools-1.10-gcc-7.3.0-pdbkohx
+module load bowtie2-2.3.5.1-gcc-7.3.0-ycvyrzc
+export PATH="/users/a/a/aadas/Bin/bowtie-1.1.1:$PATH"
+#ulimit -s unlimited
+
+SOFTWAREDIR=/users/a/a/aadas/Bin/trinityrnaseq-2.1.1
+WORKINGDIR=/users/a/a/aadas/Erharta_data_analysis/assembly_erharta
+cd $WORKINGDIR
+
+/users/a/a/aadas/Bin/trinityrnaseq-2.1.1/Trinity --seqType fq --normalize_reads --max_memory 256G --left /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/ Erharta.R1.trimmed.fq –right /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/Erharta.R2.trimmed.fq --CPU 24
+```
