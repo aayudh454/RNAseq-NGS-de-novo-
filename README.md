@@ -225,6 +225,20 @@ cd $WORKINGDIR
 
 /users/a/a/aadas/Bin/trinityrnaseq-2.1.1/Trinity --seqType fq --normalize_reads --max_memory 256G --left /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/ Erharta.R1.trimmed.fq –right /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/Erharta.R2.trimmed.fq --CPU 24
 ```
+
+Make your script executable. You should be the folder where you saved your script
+```
+[aadas@bluemoon-user2 Ba]$ chmod 700 assembly_2.11_erharta.sh
+```
+Submit your job and check status of your job
+```
+[aadas@bluemoon-user2 Ba]$ sbatch assembly_2.11_erharta.sh 
+```
+Check your status of your job
+```
+[aadas@bluemoon-user2 Ba]$ squeue -u aadas
+```
+
 **What all those mean?**
 - Use all reads from an individual (all conditions) to capture most genes
 - Read files may be gzipped (as in this example) or not (then they should not have the “.gz” ending)
