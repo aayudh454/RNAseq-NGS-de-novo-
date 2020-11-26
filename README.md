@@ -9,7 +9,7 @@ cd Erharta/Preston_JP_iLabs_14958_PR75_090820/
 ```
 C= Control, D=Drought, F=Freezing
 
-## Trimming
+## Chapter 1: Trimming
 
 #### Copying R1 and R2 files to a folder?
 
@@ -132,7 +132,7 @@ a. change software version from as **trimmomatic-0.36**
 b. Now the **first 2 files are your input file**, so after $workDIR/"name of the file" space [here R1 and R2 is the main change]
 c. Last 4 files are **output files**.  
 
-## Concatenation
+## Chapter 2: Concatenation
 
 Now copy all **R1_paired.fq.gz** and **R2.paired.fq.gz** of all treatment into a concatenation folder 
 
@@ -180,7 +180,7 @@ Now copy all **R1_paired.fq.gz** and **R2.paired.fq.gz** of all treatment into a
 both shows 150563683; That means R1 and R2 has same reads.
 
 
-## Assembly
+## Chapter 3: Assembly
 
 Move concatenated R1 and R2 trimmed files to a different folder
 
