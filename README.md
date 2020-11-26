@@ -245,3 +245,7 @@ Check your status of your job
 - Paired-end reads specified with **--left** and -**-right**. If only single-end, use **--single** instead.
 - 256G is the maximum memory to be used at any stage which allows memory limitation (jellyfish, sorting, etc.)
 - At most 24 CPU cores will be used in any stage.
+
+It might take at least 10hours and if takes more than 30hrs just resubmit it again in the server.
+
+
