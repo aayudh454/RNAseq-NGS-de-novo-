@@ -228,15 +228,15 @@ cd $WORKINGDIR
 
 Make your script executable. You should be the folder where you saved your script
 ```
-[aadas@bluemoon-user2 Ba]$ chmod 700 assembly_2.11_erharta.sh
+[aadas@vacc-user2 assembly_erharta]$ chmod 700 assembly_2.11_erharta.sh
 ```
 Submit your job and check status of your job
 ```
-[aadas@bluemoon-user2 Ba]$ sbatch assembly_2.11_erharta.sh 
+[aadas@vacc-user2 assembly_erharta]$ sbatch assembly_2.11_erharta.sh 
 ```
 Check your status of your job
 ```
-[aadas@bluemoon-user2 Ba]$ squeue -u aadas
+[aadas@vacc-user2 assembly_erharta]$ squeue -u aadas
 ```
 
 **What all those mean?**
