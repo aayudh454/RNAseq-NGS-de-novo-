@@ -249,3 +249,18 @@ Check your status of your job
 It might take at least 10hours and if takes more than 30hrs just resubmit it again in the server.
 
 
+```
+[aadas@vacc-user2 assembly_erharta]$ grep ">" Trinity.fasta | less
+[aadas@vacc-user2 assembly_erharta]$ grep ">" Trinity.fasta | sed "s/_i[0-9]\{1,2\} len.*//g" | less
+[aadas@vacc-user2 assembly_erharta]$ grep ">" Trinity.fasta | sed "s/_i[0-9]\{1,2\} len.*//g" | sort -u | less
+[aadas@vacc-user2 assembly_erharta]$ grep ">" Trinity.fasta | sed "s/_i[0-9]\{1,2\} len.*//g" | sort -u | wc -l
+```
+**95447**
+
+**check no. of seq**
+
+```
+[aadas@vacc-user2 assembly_erharta]$ grep ">" Trinity.fasta -c
+```
+**158806**
+
