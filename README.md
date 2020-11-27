@@ -264,3 +264,64 @@ It might take at least 10hours and if takes more than 30hrs just resubmit it aga
 ```
 **158806**
 
+## Chapter 3: Transcript quantification by RSEM
+
+RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome
+
+Script for transcript quantification.
+
+* Make sure your **Trinity.fasta** file in the directory
+* Make sure that **.trimmed.fq.gz** is also in the FASTQ_DIR
+
+
+```
+#!/bin/bash
+
+#SBATCH --partition=bigmem
+#SBATCH --nodes=1
+#SBATCH --ntasks=4
+#SBATCH --time=30:00:00
+#SBATCH --mem=8G
+#SBATCH --job
+#SBATCH --output=Aayudh_RSEM.out
+#SBATCH --mail-user=aadas@uvm.edu
+#SBATCH --mail-type=ALL
+
+module load samtools-1.10-gcc-7.3.0-pdbkohx
+
+TRINITY_HOME=/users/a/a/aadas/Bin/trinityrnaseq-2.1.1
+
+export PATH=/users/a/a/aadas/Bin/bowtie-1.1.1:$PATH
+export PATH=/users/a/a/aadas/Bin/RSEM-1.2.19:$PATH
+
+FASTQ_DIR=/users/a/a/aadas/Erharta_data_analysis/rsem_erharta/trinity_out_dir
+
+cd $FASTQ_DIR
+
+$TRINITY_HOME/util/align_and_estimate_abundance.pl --transcripts Trinity.fasta --seqType fq --left $FASTQ_DIR/ECC1_R1_paired.fq.gz --right $FASTQ_DIR/ECC1_R2.paired.fq.gz --est_method RSEM --aln_method bowtie --thread_count 4 --SS_lib_type RF --trinity_mode --prep_reference --output_dir $FASTQ_DIR --output_prefix Erharta_Control01
+
+
+$TRINITY_HOME/util/align_and_estimate_abundance.pl --transcripts Trinity.fasta --seqType fq --left $FASTQ_DIR/ECC2_R1_paired.fq.gz --right $FASTQ_DIR/ECC2_R2.paired.fq.gz --est_method RSEM --aln_method bowtie --thread_count 4 --SS_lib_type RF --trinity_mode --output_dir $FASTQ_DIR --output_prefix Erharta_Control02
+
+
+$TRINITY_HOME/util/align_and_estimate_abundance.pl --transcripts Trinity.fasta --seqType fq --left $FASTQ_DIR/ECC3_R1_paired.fq.gz --right $FASTQ_DIR/ECC3_R2.paired.fq.gz --est_method RSEM --aln_method bowtie --thread_count 4 --SS_lib_type RF --trinity_mode --output_dir $FASTQ_DIR --output_prefix Erharta_Control03
+```
+
+**Open R in UNIX**
+
+You should be in the directory where your files seats.
+
+```
+[aadas@vacc-user2 results_erharta]$ module load r-3.6.3-gcc-7.3.0-qo3xjgm
+[aadas@vacc-user2 results_erharta]$ R
+```
+
+Type 'q()' to quit R.
+
+```
+> q()
+Save workspace image? [y/n/c]: n
+```
+
+
+
