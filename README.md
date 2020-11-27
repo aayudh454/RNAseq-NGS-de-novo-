@@ -322,6 +322,32 @@ Type 'q()' to quit R.
 > q()
 Save workspace image? [y/n/c]: n
 ```
+The above `R` commands list the top **10 highest expressed genes** (shown below).
 
+```
+> data = read.table("Erharta_Control01.genes.results", header=T, stringsAsFactors=F)
+> idx = order(data[,"TPM"], decreasing=T)
+> data[idx[1:10], c("gene_id", "expected_count", "TPM")]
+
+> data[idx[1:10], c("gene_id", "expected_count", "TPM")]
+                    gene_id expected_count      TPM
+63364 TRINITY_DN47580_c1_g2        2287.17 81161.47
+63365 TRINITY_DN47580_c1_g3       19087.94 57618.49
+65712 TRINITY_DN48068_c6_g1       15660.55 53514.80
+65709 TRINITY_DN48068_c4_g1        4400.00 39752.32
+50273 TRINITY_DN44444_c4_g1       15965.00 32329.55
+41409 TRINITY_DN41740_c2_g1       34639.00 21155.95
+63363 TRINITY_DN47580_c1_g1        5559.00 19867.52
+39675 TRINITY_DN41080_c0_g1       11087.00 15337.50
+43098 TRINITY_DN42341_c0_g1        1177.00 12890.06
+39676 TRINITY_DN41080_c1_g1       10341.00 12117.45
+```
+**Dowload files to your desktop**
+
+Go to your Mac portal then do this-
+
+```
+Aayudhs-MacBook-Pro:~ aayudhdas$ scp aadas@vacc-user2.uvm.edu:/users/a/a/aadas/Erharta_data_analysis/rsem_erharta/results_erharta/Erharta_Control01.genes.results ~/Desktop/
+````
 
 
