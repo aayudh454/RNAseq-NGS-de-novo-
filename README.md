@@ -349,5 +349,33 @@ Go to your Mac portal then do this-
 ```
 Aayudhs-MacBook-Pro:~ aayudhdas$ scp aadas@vacc-user2.uvm.edu:/users/a/a/aadas/Erharta_data_analysis/rsem_erharta/results_erharta/Erharta_Control01.genes.results ~/Desktop/
 ````
+Run for all three treatments and then copy them to a different folder for next analysis
 
+```
+-rw-r--r-- 1 aadas pi-jcpresto 8851655 Nov 27 21:55 Erharta_Control01.genes.results
+-rw-r--r-- 1 aadas pi-jcpresto 8862588 Nov 27 21:55 Erharta_Control02.genes.results
+-rw-r--r-- 1 aadas pi-jcpresto 8870068 Nov 27 21:55 Erharta_Control03.genes.results
+-rw-r--r-- 1 aadas pi-jcpresto 8866060 Nov 27 21:55 Erharta_Drought01.genes.results
+-rw-r--r-- 1 aadas pi-jcpresto 8869023 Nov 27 21:55 Erharta_Drought02.genes.results
+-rw-r--r-- 1 aadas pi-jcpresto 8856867 Nov 27 21:55 Erharta_Drought03.genes.results
+-rw-r--r-- 1 aadas pi-jcpresto 8850300 Nov 27 21:55 Erharta_Freezing01.genes.results
+-rw-r--r-- 1 aadas pi-jcpresto 8857487 Nov 27 21:55 Erharta_Freezing02.genes.results
+-rw-r--r-- 1 aadas pi-jcpresto 8851219 Nov 27 21:55 Erharta_Freezing03.genes.results
+```
+
+## Chapter 4: Build Transcript and Gene Expression Matrices
+
+Terms:
+
+**<u>FPKM</u>: fragments per kilobase transcript length per million fragments mapped**
+
+**<u>TPM</u>: transcripts per million transcripts**
+
+Using the transcript and gene-level abundance estimates for each of your samples, construct a matrix of counts and a matrix of normalized expression values using the following script:
+
+#### For genes of *Brachypodium* control, drought and freezing
+
+```
+[aadas@bluemoon-user2 rsem_npulBdis]$ ~/Bin/trinityrnaseq-2.1.1/util/abundance_estimates_to_matrix.pl --est_method RSEM Brachypodium_control01.genes.results Brachypodium_control02.genes.results Brachypodium_control03.genes.results Brachypodium_drought01.genes.results Brachypodium_drought02.genes.results Brachypodium_drought03.genes.results Brachypodium_freezing01.genes.results Brachypodium_freezing02.genes.results Brachypodium_freezing03.genes.results --out_prefix Brachypodium.genes 
+```
 
