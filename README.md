@@ -410,3 +410,25 @@ dev.off()
 abline(fit, col='green', lwd=3)
 ```
 The linear regression allows us to extrapolate (based on the Y-intercept) that we have 13965 'genes', which is a far better guess than our count of 95,447 'genes' having at least 1 TPM in any sample, and certainly better than the 1.4 million 'genes' that were assembled. 
+
+
+## Chapeter 5: Differential Expression Analysis (Voom and DeSeq2)
+
+Copy **Erharta.genes.counts.matrix** from RSEM output and create a text file with all the parameters
+
+```
+conditionA   Erharta_Control01
+conditionA   Erharta_Control02
+conditionA   Erharta_Control03
+
+conditionB   Erharta_Drought01
+conditionB   Erharta_Drought02
+conditionB   Erharta_Drought03
+
+conditionC   Erharta_Freezing01
+conditionC   Erharta_Freezing02
+conditionC   Erharta_Freezing03
+```
+
+
+
