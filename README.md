@@ -373,9 +373,10 @@ Terms:
 
 Using the transcript and gene-level abundance estimates for each of your samples, construct a matrix of counts and a matrix of normalized expression values using the following script:
 
-#### For genes of *Brachypodium* control, drought and freezing
+#### For genes of *Erharta* control, drought and freezing
 
 ```
-[aadas@bluemoon-user2 rsem_npulBdis]$ ~/Bin/trinityrnaseq-2.1.1/util/abundance_estimates_to_matrix.pl --est_method RSEM Brachypodium_control01.genes.results Brachypodium_control02.genes.results Brachypodium_control03.genes.results Brachypodium_drought01.genes.results Brachypodium_drought02.genes.results Brachypodium_drought03.genes.results Brachypodium_freezing01.genes.results Brachypodium_freezing02.genes.results Brachypodium_freezing03.genes.results --out_prefix Brachypodium.genes 
+[aadas@bluemoon-user2 rsem_npulBdis]$ ~/Bin/trinityrnaseq-2.1.1/util/abundance_estimates_to_matrix.pl --est_method RSEM Erharta_Control01.genes.results Erharta_Control02.genes.results Erharta_Control03.genes.results Erharta_Drought01.genes.results Erharta_Drought02.genes.results Erharta_Drought03.genes.results Erharta_Freezing01.genes.results Erharta_Freezing02.genes.results Erharta_Freezing03.genes.results --out_prefix Erharta.genes
+ 
 ```
 
