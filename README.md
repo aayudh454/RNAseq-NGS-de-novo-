@@ -379,4 +379,34 @@ Using the transcript and gene-level abundance estimates for each of your samples
 [aadas@bluemoon-user2 rsem_npulBdis]$ ~/Bin/trinityrnaseq-2.1.1/util/abundance_estimates_to_matrix.pl --est_method RSEM Erharta_Control01.genes.results Erharta_Control02.genes.results Erharta_Control03.genes.results Erharta_Drought01.genes.results Erharta_Drought02.genes.results Erharta_Drought03.genes.results Erharta_Freezing01.genes.results Erharta_Freezing02.genes.results Erharta_Freezing03.genes.results --out_prefix Erharta.genes
  
 ```
+Now smilar way you can do this for isoforms- use **.isoforms.results** 
 
+#### Counting Numbers of Expressed Transcripts or Genes
+```
+~/Bin/trinityrnaseq-2.1.1/util/misc/count_matrix_features_given_MIN_TPM_threshold.pl \ Erharta.genes.TPM.not_cross_norm | tee Erharta.genes.TPM.not_cross_norm.counts_by_min_TPM
+```
+The above table indicates that we have 95,447 'genes' that are expressed by at least 1 TPM in any one of the many samples in this expression matrix.
+
+Plotting the number of 'genes' (or 'transcripts') as a function of minimum TPM threshold, we can see that the vast majority of all expressed features have very little expression support. Using R (or your own favorite data analysis package), we might extrapolate the number of expressed 'genes' based on the trend prior to the massive influx of lowly expressed transcripts:
+
+Copy the **TPM.not_cross_norm.counts_by_min_TPM** file to MAC and open R in MAC.
+
+```
+setwd("~/Desktop/Erharta_data_analysis")
+list.files()
+data = read.table("Erharta.genes.TPM.not_cross_norm.counts_by_min_TPM", header=T)
+
+tiff("Erharta_gene_matrix.tiff", width = 6.65, height = 3.75, units = 'in', res = 300)
+plot(data, xlim=c(-100,0), ylim=c(0,100000), t='b')
+
+# extract the data between 10 TPM and 100 TPM
+filt_data = data[data[,1] > -100 & data[,1] < -10,] 
+# perform a linear regression on this filtered subset of the data
+fit = lm(filt_data[,2] ~ filt_data[,1])
+print(fit)
+dev.off()
+
+# add the linear regression line to the plot 
+abline(fit, col='green', lwd=3)
+```
+The linear regression allows us to extrapolate (based on the Y-intercept) that we have 13965 'genes', which is a far better guess than our count of 95,447 'genes' having at least 1 TPM in any sample, and certainly better than the 1.4 million 'genes' that were assembled. 
