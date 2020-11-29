@@ -446,21 +446,40 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 BiocManager::install("DESeq2")
+
+BiocManager::install('limma')
+
+BiocManager::install('ctc')
 ```
 After installing all packages call them.
 ```
-library ('edgeR')
-library ('limma')
+library('limma')
+library('edgeR')
+library('ctc')
 library('DESeq2')
 library('Biobase')
 library('gplots')
 library('ape')
 ```
 
+**voom method for DE**
 
+Any of the available methods support analyses containing biological replicates. Here, for example, we again choose voom within the limma package.
 ```
 ~/Bin/trinityrnaseq-2.1.1/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix Erharta.genes.counts.matrix --method voom --samples_file gene_expression.txt
 ```
+Now scp the pdfs to your MAC.
+
+**Extracting and clustering differentially expressed transcripts (HEATMAP)**
+
+An initial step in analyzing differential expression is to extract those transcripts that are most differentially expressed (most significant FDR and fold-changes) and to cluster the transcripts according to their patterns of differential expression across the samples. 
+
+You should do this **inside the voom folder**. 
+```
+~/Bin/trinityrnaseq-2.1.1/Analysis/DifferentialExpression/analyze_diff_expr.pl --matrix Erharta.genes.counts.matrix -P 1e-3 -C 2 --samples gene_expression.txt
+```
+
+
 
 
 
