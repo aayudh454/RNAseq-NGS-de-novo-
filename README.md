@@ -430,5 +430,37 @@ conditionC   Erharta_Freezing02
 conditionC   Erharta_Freezing03
 ```
 
+*First lets get 'R' working* Check what R version is available
+
+```
+[aadas@vacc-user2 differential_gene_expression]$ module avail
+[aadas@vacc-user2 differential_gene_expression]$ module load r-3.6.3-gcc-7.3.0-qo3xjgm
+```
+Then type 'R' and load the libraries. Now install all the packages by either install.packages ("package name"). Specially EdgeR and Deseq2 you have to follow this below after opening R in the portal
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(version = "3.12")
+
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("DESeq2")
+```
+After installing all packages call them.
+```
+library ('edgeR')
+library ('limma')
+library('DESeq2')
+library('Biobase')
+library('gplots')
+library('ape')
+```
+
+
+```
+~/Bin/trinityrnaseq-2.1.1/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix Erharta.genes.counts.matrix --method voom --samples_file gene_expression.txt
+```
+
 
 
