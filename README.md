@@ -450,6 +450,11 @@ BiocManager::install("DESeq2")
 BiocManager::install('limma')
 
 BiocManager::install('ctc')
+
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("qvalue")
 ```
 After installing all packages call them.
 ```
@@ -460,6 +465,7 @@ library('DESeq2')
 library('Biobase')
 library('gplots')
 library('ape')
+library ('qvalue')
 ```
 
 **voom method for DE**
@@ -474,12 +480,26 @@ Now scp the pdfs to your MAC.
 
 An initial step in analyzing differential expression is to extract those transcripts that are most differentially expressed (most significant FDR and fold-changes) and to cluster the transcripts according to their patterns of differential expression across the samples. 
 
+This will extract all genes that have P-values at most 1e-3 and are at least 2^2 fold differentially expressed. For each of the earlier pairwise DE comparisons, this step will generate the following files:
+
 You should do this **inside the voom folder**. 
 ```
 ~/Bin/trinityrnaseq-2.1.1/Analysis/DifferentialExpression/analyze_diff_expr.pl --matrix Erharta.genes.counts.matrix -P 1e-3 -C 2 --samples gene_expression.txt
 ```
 
+**Gene Ontology (GO) Enrichment Analysis on Differentially Expressed Genes**
 
+There are three different methods for partitioning genes into clusters:
+
+- use K-means clustering to define K gene sets. (use the -K parameter). This does not leverage the already hierarchically clustered genes as shown in the heatmap, and instead uses a least-sum-of-squares method to define exactly k gene clusters.
+- cut the hierarchically clustered genes (as shown in the heatmap) into exactly K clusters.
+- (Recommended) cut the hierarchically clustered gene tree at --Ptree percent height of the tree.
+
+Do it inside voom folder and call module load r-3.6.3-gcc-7.3.0-qo3xjgm
+
+```
+~/Bin/trinityrnaseq-2.1.1/Analysis/DifferentialExpression/define_clusters_by_cutting_tree.pl -R diffExpr.P1e-3_C2.matrix.RData --Ptree 60
+```
 
 
 
