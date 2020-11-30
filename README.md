@@ -511,4 +511,89 @@ The --prin_comp 3 indicates that the first three principal components will be pl
 If you have replicates that are clear outliers, you might consider removing them from your study as potential confounders. If it's clear that you have a [batch effect](http://www.nature.com/nrg/journal/v11/n10/full/nrg2825.html), you'll want to eliminate the batch effect during your downstream analysis of differential expression.
 
 
+## Chapeter 6: Extended version of DESeq2 analysis in R
+
+**scp the gene.matrix to your MAC and then arrange the treatment to the fashion**. For installing softwares if error is coming do all the steps of installing that you did in the server.
+**TREATMENT DETAILS**
+```
+sample	cond	pop	rep
+Erharta_Control01	Control	ErhartaC	1
+Erharta_Control02	Control	ErhartaC	2
+Erharta_Control03	Control	ErhartaC	3
+Erharta_Drought01	Drought	ErhartaD	1
+Erharta_Drought02	Drought	ErhartaD	2
+Erharta_Drought03	Drought	ErhartaD	3
+Erharta_Freezing01	Freezing	ErhartaF	1
+Erharta_Freezing02	Freezing	ErhartaF	2
+Erharta_Freezing03	Freezing	ErhartaF	3
+```
+**Run DESeq2**
+```
+setwd("~/Desktop/Erharta_data_analysis/Deseq2")
+list.files()
+library("DESeq2")
+library("ggplot2")
+
+#Erharta Control_vs_Freezing
+countsTable <- read.delim('Erharta.genes.counts.matrix.txt', header=TRUE, stringsAsFactors=TRUE, row.names=1)
+#Choose control and freezing replicates column from the table
+countData=as.matrix(countsTable[,c(1,2,3,7,8,9)]) #Choose control and freezing replicates from the table
+storage.mode(countData) = "integer"
+head(countData)
+
+conds <- read.delim("TREATMENT DETAILS.txt", header=TRUE, stringsAsFactors=TRUE, row.names=1)
+head(conds)
+colData <- as.data.frame(conds[c(1,2,3,7,8,9),])
+head(colData)
+
+dim(countData)
+dim(colData)
+#model 
+dds <- DESeqDataSetFromMatrix(countData = countData,
+                              colData = colData,
+                              design = ~ pop)
+dds
+dim(dds)
+# Filtering to remove rows with 0 reads
+dds <- dds[ rowSums(counts(dds)) > 1, ]
+dim(dds)
+dds <- DESeq(dds) 
+res <- results(dds)
+#sorts according to pvalue
+res <- res[order(res$padj),]
+head(res)
+summary(res)
+summary(sub_data)
+#Subsetting based on pvalue 0.01
+x.sub <- subset(res, padj < 0.01)
+sub_data=as.data.frame(x.sub)
+y.sub <- subset(res, pvalue < 0.001)
+y.sub1 = as.data.frame(y.sub)
+z.sub <- subset(res, padj < 0.0001)
+z.sub1 =  as.data.frame(z.sub)
+#Up and Downregulated genes
+table(sign(y.sub1$log2FoldChange))
+#save as csv
+write.csv(z.sub1, file = "z.sub1.csv")
+
+#MA plot
+
+plotMA(res, main="Erharta_controlvsFreezing", ylim=c(-12,12), xlim=c(1e-01, 1e+04))
+abline(h=c(-1:1), col="red")
+#Volcano plot
+tiff("Erharta_controlvsFreezing.tiff", width = 9.97, height = 6.5, units = 'in', res = 300)
+par(family="Times")
+volcanoData <- as.data.frame(sub_data[,c(2,5,6)])
+with(volcanoData, plot(log2FoldChange, -log10(pvalue), pch=20,lwd=4, main="Erharta Control vs Freezing", xlim=c(-12,13), ylim = c(0,30)))
+# Add colored points: red if padj<0.05, orange of log2FC>1, green if both)
+with(subset(volcanoData, padj<.001 ), points(log2FoldChange, -log10(pvalue), pch=20, col="red"))
+with(subset(volcanoData, abs(log2FoldChange)>5), points(log2FoldChange, -log10(pvalue), pch=20, col="orange"))
+with(subset(volcanoData, padj<.001 & abs(log2FoldChange)>5), points(log2FoldChange, -log10(pvalue), pch=20, col="green"))
+with(subset(volcanoData, padj<.0001 & abs(log2FoldChange)>5), points(log2FoldChange, -log10(pvalue), pch=20, col="blue"))
+legend( x="topright", 
+        legend=c("padj<0.001 and log2(FC)>5","log2(FC)>5","padj<0.001","padj<0.01 and log2(FC)>2"), 
+        col=c("green","orange","red","black"), lwd=4, lty=c(NA,NA,NA,NA), 
+        pch=c(20,20,20,20), merge=FALSE, cex = 0.75)
+dev.off()
+```
 
