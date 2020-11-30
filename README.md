@@ -596,4 +596,33 @@ legend( x="topright",
         pch=c(20,20,20,20), merge=FALSE, cex = 0.75)
 dev.off()
 ```
+## Chapeter 7: Transdecoder and Gene Annotation
+
+***Step 1: extract the long open reading frames by Transdecoder***
+
+```
+#!/bin/bash
+
+#SBATCH --partition=bigmem
+#SBATCH --nodes=1
+#SBATCH --ntasks=4
+#SBATCH --time=30:00:00
+#SBATCH --mem=10G
+#SBATCH --job
+#SBATCH --output=Aayudh_transDecoder-step1.out
+#SBATCH --mail-user=aadas@uvm.edu
+#SBATCH --mail-type=ALL
+
+
+export PATH="/users/a/a/aadas/Bin/TransDecoder-3.0.1/transdecoder_plugins/cdhit:$PATH"
+export PATH="/users/a/a/aadas/Bin/TransDecoder-3.0.1:$PATH"
+export PATH="/users/a/a/aadas/Bin/hmmer-3.1b2-linux-intel-x86_64/binaries:$PATH"
+export PATH="/users/a/a/aadas/Bin/ncbi-blast-2.6.0+/bin:$PATH"
+
+transDecoder_dir=/users/a/a/aadas/Bin/TransDecoder-3.0.1
+INPUT_DIR=/users/a/a/aadas/Erharta_data_analysis/transdecoder
+cd $INPUT_DIR
+
+$transDecoder_dir/TransDecoder.LongOrfs -t $INPUT_DIR/Trinity.fasta
+```
 
