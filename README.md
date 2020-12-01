@@ -626,3 +626,230 @@ cd $INPUT_DIR
 $transDecoder_dir/TransDecoder.LongOrfs -t $INPUT_DIR/Trinity.fasta
 ```
 
+
+***Step 2 (run two scripts):BlastP and pfam search together***
+
+This single line using the blastp command below will compare your transcript fasta file
+
+(-query) to the already formatted uniref90 database (-db).
+
+You can enter 'blastp --help' for a list of the parameters.
+
+We choose the tab-delimited output format (6) and to only help the top hit (-max_target_seqs) and only if it has a minimum evalue of 0.001.
+
+**batch_blastp_hmmscan.pl SCRIPT**
+
+```
+#!/usr/bin/perl
+use strict;
+use warnings;
+use Getopt::Long;
+
+
+my $file;               #BLAST query sequences
+my $size= 2000;         #Number of sequences per task
+my $type;               #Blast program.
+my $database;           #path to database
+my $eval= 1e-5;         #BLAST e-value cutoff
+my $outputFormat= 6;    #BLAST output format
+my $outputDir="blast_out";      #output directory
+my $help;
+my $input_dir=`pwd`;
+my $blast_dir="/users/a/a/aadas/Bin/ncbi-blast-2.6.0+/bin";
+my $hmm_dir="/users/a/a/aadas/Bin/hmmer-3.1b2-linux-intel-x86_64/binaries";
+my $hmmDB_dir="/users/a/a/aadas/blastp_Brachyleytrum/database";
+my $hmm="hmmscan";
+my $hmmoutputDir="hmmscan_out";
+GetOptions(
+        'query=s'       => \$file,
+        'num_seqs=i'    => \$size,
+        'program=s'     => \$type,
+        'database=s'    => \$database,
+        'eval=f'        => \$eval,
+        'm=i'           => \$outputFormat,
+        'output_dir=s'  => \$outputDir,
+#       'rcc_queue=s'   => \$queue,
+#       'combine'       => \$autoCombine,
+        'help'          => \$help
+);
+
+my $usage = <<__EOUSAGE__;
+
+###################################################################################
+#       Batch Blast: Task Array
+###################################################################################
+#
+#  --query <string>             File containing query sequences
+# 
+#  --program <string>           The BLAST program to use
+#
+#  --database <string>          The location of the BLAST database
+#
+# Optional:
+# 
+#  --num_seqs <integer>         The number of sequences per data sub-set
+#                               Default: 1000
+#--eval <float>               The BLAST e-value cutoff
+#                               Default: 1e-10
+#
+#  --m <integer>                BLAST output format (8 for tablular)
+#                               Default: 8 - Tabular Output
+#
+#  --output_dir <string>        Output directory for BLAST results
+#                               Default: blast_out
+#
+#  --combine                    Automatically combine and remove the split.*
+#                               directories.
+#                               Default: False
+#
+#  --job_name_prefix            A prefix to differentiate this batch_blast run
+#                               from another.
+#                               
+#  --rcc_queue                  SGE queue to run the BLAST job on
+#                               Default: rcc-30d
+#
+#  --help  
+###################################################################################
+#  
+#  To pass other arguments to blastall use -- <args> AFTER all required
+#  arguments.
+#
+###################################################################################
+
+__EOUSAGE__
+;
+
+if(!$file || !$type || !$database || $help){
+        die($usage);
+}
+
+my $seqid;
+my $seq;
+
+my $seq_counter=0;
+my $split_count=1;
+
+open my $infile, "<", $file;
+while(<$infile>){
+        chomp;
+        #is this line a new sequence header?
+        if(/^>/){
+                #if there is a storred sequence then write it out to file first
+                if($seqid){
+                        mkdir "split.".$split_count;
+                        chdir ("split.$split_count");
+                        open my $OUT, ">>", "split.$split_count.fasta";
+                        print $OUT "$seqid\n$seq\n";
+                        close $OUT;
+                        if($seq_counter == $size){
+                                $seq_counter = 0;
+                                $split_count++;
+
+                        }
+                        chdir ("../");
+                }
+                $seq=();
+                $seqid = $_;
+                $seq_counter++;
+        }
+        #if not then keep building the sequence
+        else{
+                $seq .= $_;
+        }
+}
+}
+#necessarily this loop exits before the last sequence is written. Write it now.
+if($seqid){
+        mkdir "split.".$split_count;
+        chdir ("split.$split_count");
+        open my $OUTsplit, ">>", "split.$split_count.fasta";
+        print $OUTsplit "$seqid\n$seq\n";
+        close $OUTsplit;
+        if($seq_counter == $size){
+                $seq_counter = 0;
+                $split_count++;
+        }
+        chdir ("../");
+}
+close $infile;
+#if the output directory doesn't exist then make it
+if(! -e $outputDir){
+        `mkdir $outputDir`;
+}
+
+#print the task-array script
+for(my $i=1;$i<=$split_count;$i++){
+     open my $SUB_SCRIPTS, ">", "$type-part-$i.sh" or die();
+     print $SUB_SCRIPTS "#!/bin/bash\n",
+                        "#PBS -N out.$type.part-$i\n",
+                        "#PBS -l nodes=1:ppn=1,pmem=10G,pvmem=12g\n",
+                        "#PBS -j oe\n",
+                        "#PBS -l walltime=30:00:00\n",
+                        "#PBS -M aadas\@uvm.edu\n",
+                        "#PBS -m bea\n",
+                        "\n",
+                        "INPUT_DIR=$input_dir\n",
+                        "BLAST_DIR=$blast_dir\n",
+                        "cd \$INPUT_DIR\n",
+                        "\n",
+                        "\$BLAST_DIR/$type ",
+                        "-query \$INPUT_DIR/split.$i/split.$i.fasta ",
+                        "-db $database ",
+                        "-outfmt $outputFormat ",
+                        "-evalue $eval ",
+                        "-num_threads 1 ",
+                        "-max_target_seqs 1 ",
+                        "\> $outputDir/split.$i.$type",
+                        "\n",
+                        "exit\n";
+}
+}
+#print the task-array scripts hmmscan
+if(! -e $hmmoutputDir){
+        `mkdir $hmmoutputDir`;
+}
+
+for(my $i=1;$i<=$split_count;$i++){
+     open my $HMM_SCRIPTS, ">", "$hmm-part-$i.sh" or die();
+     print $HMM_SCRIPTS "#!/bin/bash\n",
+                        "#PBS -N out.$hmm.part-$i\n",
+                        "#PBS -l nodes=1:ppn=1,pmem=10G,pvmem=12g\n",
+                        "#PBS -j oe\n",
+                        "#PBS -l walltime=30:00:00\n",
+                        "#PBS -M aadas\@uvm.edu\n",
+                        "#PBS -m bea\n",
+                        "\n",
+                        "INPUT_DIR=$input_dir\n",
+                        "HMM_DIR=$hmm_dir\n",
+                        "cd \$INPUT_DIR\n",
+                        "\n",
+                        "\$HMM_DIR/$hmm ",
+                        "--cpu 1 ",
+                        "--domtblout $hmmoutputDir/split.$i.domtblout ",
+                        "$hmmDB_dir/Pfam-A.hmm ",
+                        "\$INPUT_DIR/split.$i/split.$i.fasta ",
+                        "\n",
+                        "exit\n";
+}
+#and submit it
+```
+
+Then (**When you run the 3rd script; generally it's submitting 300 jobs to VACC but it's not going to run; So, comment out blast-then it's only submitting hmm scan; Even if doesn't work then edit blast-part* and manually put part-1* then part-2*  **)
+
+```
+#!/bin/bash
+cd `pwd`
+
+perl batch_blastp_hmmscan.pl -q Trinity.fasta.transdecoder_dir/longest_orfs.pep -p blastp -d /users/a/a/aadas/annotation/uniprot/uniprot_sprot.pep
+
+chmod 700 *.sh
+for i in blastp-part*; do
+  sbatch $i &
+done
+
+for i in hmmscan-part*; do
+  sbatch $i &
+done
+```
+
+
