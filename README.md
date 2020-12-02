@@ -860,3 +860,40 @@ done
 ./run_blastp_hmmscan.sh
 ```
 
+**Step 3 - Final step: predict the likely coding regions**
+
+```
+#!/bin/bash
+
+#SBATCH --partition=bigmem
+#SBATCH --job-name=out.finalstep
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --time=12:00:00
+#SBATCH --mem=10G
+#SBATCH --mail-user=aadas@uvm.edu
+#SBATCH --mail-type=ALL
+
+
+export PATH="/users/a/a/aadas/Bin/TransDecoder-3.0.1/transdecoder_plugins/cdhit:$PATH"
+export PATH="/users/a/a/aadas/Bin/TransDecoder-3.0.1:$PATH"
+export PATH="/users/a/a/aadas/Bin/hmmer-3.1b2-linux-intel-x86_64/binaries:$PATH"
+export PATH="/users/a/a/aadas/Bin/ncbi-blast-2.6.0+/bin:$PATH"
+
+transDecoder_dir=/users/a/a/aadas/Bin/TransDecoder-3.0.1
+INPUT_DIR=/users/a/a/aadas/nassellaBrachy_drought_freezing/blastP
+cd $INPUT_DIR
+######################################################################
+###concatenate outputs for blastp and hmmscan searches
+#####################################################################
+cat blast_out/split.* > blastp.outfmt6
+cat hmmscan_out/* > pfam.domtblout
+####################################################################################################
+####remove files that are no longer needed
+###################################################################################################
+rm -r split.* blastp-part-* hmmscan-part-*
+#####################################################################################################
+###submit final step of TransDecoder searching for potential coding regions of the transcripts
+#####################################################################################################
+$transDecoder_dir/TransDecoder.Predict -t $INPUT_DIR/npulBdis_Trinity211.fasta --retain_pfam_hits pfam.domtblout --retain_blastp_hits blastp.outfmt6
+```
