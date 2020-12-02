@@ -881,7 +881,7 @@ export PATH="/users/a/a/aadas/Bin/hmmer-3.1b2-linux-intel-x86_64/binaries:$PATH"
 export PATH="/users/a/a/aadas/Bin/ncbi-blast-2.6.0+/bin:$PATH"
 
 transDecoder_dir=/users/a/a/aadas/Bin/TransDecoder-3.0.1
-INPUT_DIR=/users/a/a/aadas/nassellaBrachy_drought_freezing/blastP
+INPUT_DIR=/users/a/a/aadas/Erharta_data_analysis/transdecoder
 cd $INPUT_DIR
 ######################################################################
 ###concatenate outputs for blastp and hmmscan searches
@@ -895,5 +895,5 @@ rm -r split.* blastp-part-* hmmscan-part-*
 #####################################################################################################
 ###submit final step of TransDecoder searching for potential coding regions of the transcripts
 #####################################################################################################
-$transDecoder_dir/TransDecoder.Predict -t $INPUT_DIR/npulBdis_Trinity211.fasta --retain_pfam_hits pfam.domtblout --retain_blastp_hits blastp.outfmt6
+$transDecoder_dir/TransDecoder.Predict -t $INPUT_DIR/Trinity.fasta --retain_pfam_hits pfam.domtblout --retain_blastp_hits blastp.outfmt6
 ```
