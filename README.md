@@ -854,5 +854,9 @@ for i in hmmscan-part*; do
   sbatch $i &
 done
 ```
+**Run the job with the below code. NOT by sbatch**
 
+```
+./run_blastp_hmmscan.sh
+```
 
