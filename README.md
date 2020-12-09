@@ -953,4 +953,11 @@ a. Now download all from  https://github.com/z0on/GO_MWU
 
 b. make a new folder in your directory.
 
-c. Now upload GO_MWU.R, gomwu_a.pl, gomwu_b.pl, gomwu.functions.R to server folder.
+c. Now get all of the required scripts by doing **wget** [scripts: GO_MWU.R, gomwu_a.pl, gomwu_b.pl, gomwu.functions.R]
+d. GO hierarchy file (go.obo, http://www.geneontology.org/GO.downloads.ontology.shtml)
+e. Now load R
+
+```
+[aadas@vacc-user2 go_annotation]$ module load r-3.6.3-gcc-7.3.0-qo3xjgm
+```
+f. From the uniprot output just make a file with 2 columns - 1. gene ID and 2. GO terms
