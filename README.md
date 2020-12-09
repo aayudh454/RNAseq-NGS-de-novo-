@@ -897,3 +897,22 @@ rm -r split.* blastp-part-* hmmscan-part-*
 #####################################################################################################
 $transDecoder_dir/TransDecoder.Predict -t $INPUT_DIR/Trinity.fasta --retain_pfam_hits pfam.domtblout --retain_blastp_hits blastp.outfmt6
 ```
+
+***Export the outfmt6 in a csv or text file***
+
+1. Just rename the outfmt6 file with .txt
+2. Then open is any text viewer 
+3. Copy by command + C. Now open a excel sheet and paste it (make sure you leave one row empty for the headers).
+4. Use the header
+
+| query_ID | subject_id | %_identity | alignment length | mismatches | gap opens | q. start | q. end | s. start | s. end | evalue | bit score |
+| -------- | ---------- | ---------- | ---------------- | ---------- | --------- | -------- | ------ | -------- | ------ | ------ | --------- |
+|          |            |            |                  |            |           |          |        |          |        |        |           |
+
+1. Save the file as csv.
+
+2. Now open it in any text reader (BBEdit), now replace ''::'' with '',''. Now save it and close it. Open the csv now and adjust the header and delete column 2,3,4. Save and replace the csv.
+
+3. Rename both file 1st column with "query_ID"
+
+4. Now use R to merge
