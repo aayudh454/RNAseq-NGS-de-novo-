@@ -916,3 +916,41 @@ $transDecoder_dir/TransDecoder.Predict -t $INPUT_DIR/Trinity.fasta --retain_pfam
 3. Rename both file 1st column with "query_ID"
 
 4. Now use R to merge
+```
+setwd("~/Desktop/Erharta_data_analysis/BLASTP")
+list.files()
+data <- read.csv("Erharta_blastp.outfmt6.csv")
+data1 <- read.csv("Erharta_drought_freezing_conserved.csv")
+head(data)
+head(data1)
+#merge data by ID
+merged_data<- merge(data1,data, by="query_ID")
+head(merged_data)
+merged_data_final <- as.data.frame(merged_data[,1:14])
+head(merged_data_final)
+#Delete repeated column
+library(dplyr)
+data2 <- merged_data_final %>% distinct
+#Save as csv file
+write.csv(data2, file = "Erharta_Merged_freezing_conserved_annotated.csv")
+```
+5. Now cut the column 8 and paste it after column 1.
+
+## Chapter8: Go annotation
+
+1. Take the **Merged_freezing_conserved_annotated.xlsx** file and copy the query ID
+2. Now go to the uniprot website [http://www.uniprot.org/uploadlists/](http://www.uniprot.org/uploadlists/).
+3. Upload your file.
+4. Select From: UniProtKB AC/ID, To: UniProtKB (default)
+5. Click GO.
+6. Click on the “columns” to add all five Gene Ontology columns, KEGG (under 'Genome Annotation'), and PANTHER and Pfam (under 'Family and Domains'). 
+7. Click on the “download” button to download your data as a tab separated format.
+8. Open in text viewer and copy it in a excel and save as csv.
+
+#### **GO_MWU steps**
+
+a. Now download all from  https://github.com/z0on/GO_MWU
+
+b. make a new folder in your directory.
+
+c. Now upload GO_MWU.R, gomwu_a.pl, gomwu_b.pl, gomwu.functions.R to server folder.
