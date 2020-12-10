@@ -946,18 +946,3 @@ write.csv(data2, file = "Erharta_Merged_freezing_conserved_annotated.csv")
 6. Click on the “columns” to add all five Gene Ontology columns, KEGG (under 'Genome Annotation'), and PANTHER and Pfam (under 'Family and Domains'). 
 7. Click on the “download” button to download your data as a tab separated format.
 8. Open in text viewer and copy it in a excel and save as csv.
-
-#### **GO_MWU steps**
-
-a. Now download all from  https://github.com/z0on/GO_MWU
-
-b. make a new folder in your directory.
-
-c. Now get all of the required scripts by doing **wget** [scripts: GO_MWU.R, gomwu_a.pl, gomwu_b.pl, gomwu.functions.R]
-d. GO hierarchy file (go.obo, http://www.geneontology.org/GO.downloads.ontology.shtml)
-e. Now load R
-
-```
-[aadas@vacc-user2 go_annotation]$ module load r-3.6.3-gcc-7.3.0-qo3xjgm
-```
-f. From the uniprot output just make a file with 2 columns - 1. gene ID and 2. GO terms
