@@ -373,6 +373,10 @@ Terms:
 
 Using the transcript and gene-level abundance estimates for each of your samples, construct a matrix of counts and a matrix of normalized expression values using the following script:
 
+**Now first load R. Without loading R you will have full of erros**
+```
+[aadas@vacc-user2 gene_expression_matrices]$ module load r-3.6.3-gcc-7.3.0-qo3xjgm
+```
 #### For genes of *Erharta* control, drought and freezing
 
 ```
