@@ -610,6 +610,8 @@ dev.off()
 
 ***Step 1: extract the long open reading frames by Transdecoder***
 
+Move Trinity.fasta to a separate folder
+
 ```
 #!/bin/bash
 
