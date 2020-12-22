@@ -1049,4 +1049,10 @@ CITATION:
 [aadas@vacc-user2 fastme-2.1.5]$ ./configure
 [aadas@vacc-user2 fastme-2.1.5]$ make
 ```
-3. **DLCpar**: Go https://www.cs.hmc.edu/~yjw/software/dlcpar/.
+4. **DLCpar**: Go https://www.cs.hmc.edu/~yjw/software/dlcpar/.
+
+Now run orthofinder on the example data
+
+```
+[aadas@vacc-user2 OrthoFinder]$ ~/Bin/OrthoFinder/orthofinder -f ExampleData/
+```
