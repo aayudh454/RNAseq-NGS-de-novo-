@@ -358,6 +358,10 @@ If you want to download the **whole folder** then
 ```
 scp -r aadas@vacc-user2.uvm.edu://users/a/a/aadas/Nassella_data_analysis/differential_gene_expression/voom.3044.dir ~/Desktop/Nassella_Brachypodium_data\ analysis/Nassella/
 ```
+**MAC to UNix copy**
+```
+Aayudhs-MacBook-Pro:Downloads aayudhdas$ scp -rp /Users/aayudhdas/Downloads/fastme-2.1.5.tar.gz aadas@vacc-user2.uvm.edu:/users/a/a/aadas/Bin
+```
 
 Run for all three treatments and then copy them to a different folder for next analysis
 
