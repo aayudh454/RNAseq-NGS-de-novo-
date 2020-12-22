@@ -1029,3 +1029,14 @@ CITATION:
  Emms D.M. & Kelly S. (2017), MBE 34(12): 3267-3278
  Emms D.M. & Kelly S. (2018), bioRxiv https://doi.org/10.1101/267914
 ```
+
+**Dependencies**
+1. **BLAST+**: Go to (https://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/). Do  
+
+2. **MCL**: Go https://micans.org/mcl/. **wget** to download to your software directory and do **tar -zxvf** to unzip. 
+```
+[aadas@vacc-user2 Bin]$ cd mcl-14-137/
+[aadas@vacc-user2 mcl-14-137]$ ./configure --prefix=$HOME/local
+[aadas@vacc-user2 mcl-14-137]$ make install
+```
+
