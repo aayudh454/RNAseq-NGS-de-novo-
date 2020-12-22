@@ -962,3 +962,69 @@ write.csv(data2, file = "Erharta_Merged_freezing_conserved_annotated.csv")
 6. Click on the “columns” to add all five Gene Ontology columns, KEGG (under 'Genome Annotation'), and PANTHER and Pfam (under 'Family and Domains'). 
 7. Click on the “download” button to download your data as a tab separated format.
 8. Open in text viewer and copy it in a excel and save as csv.
+
+## Chapter9: Orthofinder
+
+1. Go to https://github.com/davidemms/OrthoFinder/releases and copy link address (OrthoFinder_glibc-2.15.tar.gz) then to **wget** to download to your software directory.
+
+```
+[aadas@vacc-user2 OrthoFinder]$ ~/Bin/OrthoFinder/orthofinder -h
+
+OrthoFinder version 2.5.1 Copyright (C) 2014 David Emms
+
+SIMPLE USAGE:
+Run full OrthoFinder analysis on FASTA format proteomes in <dir>
+  orthofinder [options] -f <dir>
+
+Add new species in <dir1> to previous run in <dir2> and run new analysis
+  orthofinder [options] -f <dir1> -b <dir2>
+
+OPTIONS:
+ -t <int>        Number of parallel sequence search threads [Default = 4]
+ -a <int>        Number of parallel analysis threads
+ -d              Input is DNA sequences
+ -M <txt>        Method for gene tree inference. Options 'dendroblast' & 'msa'
+                 [Default = dendroblast]
+ -S <txt>        Sequence search program [Default = diamond]
+                 Options: blast, mmseqs, blast_gz, diamond, blast_nucl
+ -A <txt>        MSA program, requires '-M msa' [Default = mafft]
+                 Options: muscle, mafft
+ -T <txt>        Tree inference method, requires '-M msa' [Default = fasttree]
+                 Options: iqtree, raxml-ng, fasttree, raxml
+ -s <file>       User-specified rooted species tree
+ -I <int>        MCL inflation parameter [Default = 1.5]
+ -x <file>       Info for outputting results in OrthoXML format
+ -p <dir>        Write the temporary pickle files to <dir>
+ -1              Only perform one-way sequence search
+ -X              Don't add species names to sequence IDs
+ -y              Split paralogous clades below root of a HOG into separate HOGs
+ -z              Don't trim MSAs (columns>=90% gap, min. alignment length 500)
+ -n <txt>        Name to append to the results directory
+ -o <txt>        Non-default results directory
+ -h              Print this help text
+
+WORKFLOW STOPPING OPTIONS:
+ -op             Stop after preparing input files for BLAST
+ -og             Stop after inferring orthogroups
+ -os             Stop after writing sequence files for orthogroups
+                 (requires '-M msa')
+ -oa             Stop after inferring alignments for orthogroups
+                 (requires '-M msa')
+ -ot             Stop after inferring gene trees for orthogroups 
+
+WORKFLOW RESTART COMMANDS:
+ -b  <dir>         Start OrthoFinder from pre-computed BLAST results in <dir>
+ -fg <dir>         Start OrthoFinder from pre-computed orthogroups in <dir>
+ -ft <dir>         Start OrthoFinder from pre-computed gene trees in <dir>
+
+LICENSE:
+ Distributed under the GNU General Public License (GPLv3). See License.md
+
+CITATION:
+ When publishing work that uses OrthoFinder please cite:
+ Emms D.M. & Kelly S. (2019), Genome Biology 20:238
+
+ If you use the species tree in your work then please also cite:
+ Emms D.M. & Kelly S. (2017), MBE 34(12): 3267-3278
+ Emms D.M. & Kelly S. (2018), bioRxiv https://doi.org/10.1101/267914
+```
