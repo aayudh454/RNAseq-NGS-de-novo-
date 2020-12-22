@@ -1043,4 +1043,10 @@ CITATION:
 [aadas@vacc-user2 mcl-14-137]$ ./configure --prefix=$HOME/local
 [aadas@vacc-user2 mcl-14-137]$ make install
 ```
-
+3. **FastME**: Go http://www.atgc-montpellier.fr/fastme/binaries.php. 
+```
+[aadas@vacc-user2 Bin]$ cd fastme-2.1.5/
+[aadas@vacc-user2 fastme-2.1.5]$ ./configure
+[aadas@vacc-user2 fastme-2.1.5]$ make
+```
+3. **DLCpar**: Go https://www.cs.hmc.edu/~yjw/software/dlcpar/.
