@@ -968,6 +968,7 @@ write.csv(data2, file = "Erharta_Merged_freezing_conserved_annotated.csv")
 1. Go to https://github.com/davidemms/OrthoFinder/releases and copy link address (OrthoFinder_glibc-2.15.tar.gz) then to **wget** to download to your software directory.
 
 ```
+[aadas@vacc-user2 Bin]$ tar -zxvf OrthoFinder_glibc-2.15.tar.gz 
 [aadas@vacc-user2 OrthoFinder]$ ~/Bin/OrthoFinder/orthofinder -h
 
 OrthoFinder version 2.5.1 Copyright (C) 2014 David Emms
