@@ -1056,3 +1056,7 @@ Now run orthofinder on the example data
 ```
 [aadas@vacc-user2 OrthoFinder]$ ~/Bin/OrthoFinder/orthofinder -f ExampleData/
 ```
+~/Bin/OrthoFinder/orthofinder -f /users/a/a/aadas/Erharta_data_analysis/orthofinder_try
+```
+
+
