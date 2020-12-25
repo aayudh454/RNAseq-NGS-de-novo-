@@ -16,7 +16,7 @@ C= Control, D=Drought, F=Freezing
 
 * [Page 3 2020-12-06](#id-section3). Assembly by Trinity 2.1.1
 
-* [Page 4 2020-12-07](#id-section4). Transcript quantification by RSEM 
+* [Page 4 2020-12-07](#id-section4). Build Transcript by RSEM
 
 * [Page 5 2020-12-08](#id-section5). Build Transcript and Gene Expression Matrices
 
@@ -209,6 +209,10 @@ Now copy all **R1_paired.fq.gz** and **R2.paired.fq.gz** of all treatment into a
 150563683
 ```
 both shows 150563683; That means R1 and R2 has same reads.
+
+------
+
+<div id='id-section3'/>
 
 
 ## Chapter 3: Assembly
@@ -403,6 +407,10 @@ Run for all three treatments and then copy them to a different folder for next a
 -rw-r--r-- 1 aadas pi-jcpresto 8857487 Nov 27 21:55 Erharta_Freezing02.genes.results
 -rw-r--r-- 1 aadas pi-jcpresto 8851219 Nov 27 21:55 Erharta_Freezing03.genes.results
 ```
+
+------
+
+<div id='id-section4'/>
 
 ## Chapter 4: Build Transcript and Gene Expression Matrices
 
