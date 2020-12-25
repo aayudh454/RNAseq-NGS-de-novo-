@@ -1056,7 +1056,40 @@ Now run orthofinder on the example data
 ```
 [aadas@vacc-user2 OrthoFinder]$ ~/Bin/OrthoFinder/orthofinder -f ExampleData/
 ```
+**FOR YOUR DATA**
+
+1. Make a folder and copy all the **longest_orfs.pep** files of individual species and rename them with **species_name.faa**.
+2. Now submit this job either in the server or at your remote option in the folder where all these faa files are stored.
+
+**AT YOUR UNIX**
+```
 ~/Bin/OrthoFinder/orthofinder -f /users/a/a/aadas/Erharta_data_analysis/orthofinder_try
 ```
+**SUBMISSION AT VACC**
+
+```
+#!/bin/bash
+
+#SBATCH --partition=bigmem
+#SBATCH --nodes=1
+#SBATCH --ntasks=24
+#SBATCH --time=30:00:00
+#SBATCH --mem=256G
+#SBATCH --job
+#SBATCH --output=Aayudh_orthofinder
+#SBATCH --mail-user=aadas@uvm.edu
+#SBATCH --mail-type=ALL
 
 
+export PATH="/users/a/a/aadas/Bin/ncbi-blast-2.6.0+/bin:$PATH"
+export PATH="/users/a/a/aadas/Bin/mcl-14-137:$PATH"
+export PATH="/users/a/a/aadas/Bin/fastme-2.1.5/bin:$PATH"
+export PATH="/users/a/a/aadas/Bin/dlcpar-2.0.1/bin:$PATH"
+export PATH="/users/a/a/aadas/Bin/OrthoFinder:$PATH"
+
+OrthoFinder_dir=/users/a/a/aadas/Bin/OrthoFinder
+INPUT_DIR=/users/a/a/aadas/Erharta_data_analysis/orthofinder_try
+cd $INPUT_DIR
+
+$OrthoFinder_dir/orthofinder -f /users/a/a/aadas/Erharta_data_analysis/orthofinder_try
+```
