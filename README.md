@@ -12,7 +12,7 @@ C= Control, D=Drought, F=Freezing
 ## Table of contents    
 * [Page 1: 2020-12-05](#id-section1). Moving files and trimming by Trimmomatic-0.36
 
-* [Page 2: 2020-12-05](#id-section2). Trimming for all files and Concatenation
+* [Page 2: 2020-12-05](#id-section2). Concatenation
 
 * [Page 3 2020-12-06](#id-section3). Assembly by Trinity 2.1.1
 
@@ -32,7 +32,7 @@ C= Control, D=Drought, F=Freezing
 ------
 <div id='id-section1'/>
 
-## Chapter 1: Trimming
+## Chapter 1: Moving files and trimming by Trimmomatic-0.36
 
 #### Copying R1 and R2 files to a folder?
 
@@ -157,7 +157,11 @@ iv. TRIMMING COMMANDS AND PARAMETERS
 a. change software version from as **trimmomatic-0.36**
 
 b. Now the **first 2 files are your input file**, so after $workDIR/"name of the file" space [here R1 and R2 is the main change]
-c. Last 4 files are **output files**.  
+c. Last 4 files are **output files**. 
+
+-----
+<div id='id-section2'/>
+
 
 ## Chapter 2: Concatenation
 
