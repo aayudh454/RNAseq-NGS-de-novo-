@@ -9,6 +9,28 @@ cd Erharta/Preston_JP_iLabs_14958_PR75_090820/
 ```
 C= Control, D=Drought, F=Freezing
 
+## Table of contents    
+* [Page 1: 2020-12-05](#id-section1). Moving files and trimming by Trimmomatic-0.36
+
+* [Page 2: 2020-12-05](#id-section2). Trimming for all files and Concatenation
+
+* [Page 3 2020-12-06](#id-section3). Assembly by Trinity 2.1.1
+
+* [Page 4 2020-12-07](#id-section4). Transcript quantification by RSEM 
+
+* [Page 5 2020-12-08](#id-section5). Build Transcript and Gene Expression Matrices
+
+* [Page 6 2020-12-08](#id-section6). Differential Expression Analysis (DeSeq2)
+
+* [Page 7 2020-12-14](#id-section7). Gene Annotation with blastP
+
+* [Page 8 2020-12-16](#id-section8). Conserved freezing gene (Bdis and Npul) analysis
+
+* [Page 9 2020-12-22](#id-section9). GO annotation 
+
+
+------
+<div id='id-section1'/>
 ## Chapter 1: Trimming
 
 #### Copying R1 and R2 files to a folder?
