@@ -10,17 +10,17 @@ cd Erharta/Preston_JP_iLabs_14958_PR75_090820/
 C= Control, D=Drought, F=Freezing
 
 ## Table of contents    
-* [Page 1: 2020-12-05](#id-section1). Moving files and trimming by Trimmomatic-0.36
+* [Page 1: 2020-12-05](#id-section1). Chapter 1: Moving files and trimming by Trimmomatic-0.36
 
-* [Page 2: 2020-12-05](#id-section2). Concatenation
+* [Page 2: 2020-12-05](#id-section2). Chapter 2: Concatenation
 
-* [Page 3 2020-12-06](#id-section3). Assembly by Trinity 2.1.1
+* [Page 3 2020-12-06](#id-section3). Chapter 3: Assembly by Trinity 2.1.1
 
-* [Page 4 2020-12-07](#id-section4). Build Transcript by RSEM
+* [Page 4 2020-12-07](#id-section4). Chapter 4: Transcript quantification by RSEM
 
-* [Page 5 2020-12-08](#id-section5). Build Transcript and Gene Expression Matrices
+* [Page 5 2020-12-08](#id-section5). Chapter 5: Build Transcript and Gene Expression Matrices
 
-* [Page 6 2020-12-08](#id-section6). Differential Expression Analysis (DeSeq2)
+* [Page 6 2020-12-08](#id-section6). Chapeter 6: Differential Expression Analysis (Voom and DeSeq2)
 
 * [Page 7 2020-12-14](#id-section7). Gene Annotation with blastP
 
@@ -299,7 +299,11 @@ It might take at least 10hours and if takes more than 30hrs just resubmit it aga
 ```
 **158806**
 
-## Chapter 3: Transcript quantification by RSEM
+------
+
+<div id='id-section4'/>
+
+## Chapter 4: Transcript quantification by RSEM
 
 RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome
 
@@ -410,9 +414,9 @@ Run for all three treatments and then copy them to a different folder for next a
 
 ------
 
-<div id='id-section4'/>
+<div id='id-section5'/>
 
-## Chapter 4: Build Transcript and Gene Expression Matrices
+## Chapter 5: Build Transcript and Gene Expression Matrices
 
 Terms:
 
@@ -465,7 +469,12 @@ abline(fit, col='green', lwd=3)
 The linear regression allows us to extrapolate (based on the Y-intercept) that we have 13965 'genes', which is a far better guess than our count of 95,447 'genes' having at least 1 TPM in any sample, and certainly better than the 1.4 million 'genes' that were assembled. 
 
 
-## Chapeter 5: Differential Expression Analysis (Voom and DeSeq2)
+------
+
+<div id='id-section6'/>
+
+
+## Chapeter 6: Differential Expression Analysis (Voom and DeSeq2)
 
 Copy **Erharta.genes.counts.matrix** from RSEM output and create a text file with all the parameters
 
