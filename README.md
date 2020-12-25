@@ -31,6 +31,7 @@ C= Control, D=Drought, F=Freezing
 
 ------
 <div id='id-section1'/>
+
 ## Chapter 1: Trimming
 
 #### Copying R1 and R2 files to a folder?
