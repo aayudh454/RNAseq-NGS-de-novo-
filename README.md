@@ -22,11 +22,13 @@ C= Control, D=Drought, F=Freezing
 
 * [Page 6 2020-12-08](#id-section6). Chapeter 6: Differential Expression Analysis (Voom and DeSeq2)
 
-* [Page 7 2020-12-14](#id-section7). Gene Annotation with blastP
+* [Page 7 2020-12-14](#id-section7). Chapeter 7: Extended version of DESeq2 analysis in R
 
-* [Page 8 2020-12-16](#id-section8). Conserved freezing gene (Bdis and Npul) analysis
+* [Page 8 2020-12-16](#id-section8). Chapeter 8: Transdecoder and Gene Annotation (blastp)
 
-* [Page 9 2020-12-22](#id-section9). GO annotation 
+* [Page 9 2020-12-22](#id-section9). Chapter 9: Go annotation (uniprot)
+
+* [Page 10 2020-12-22](#id-section10). Chapter10: Orthofinder
 
 
 ------
@@ -572,8 +574,11 @@ The --prin_comp 3 indicates that the first three principal components will be pl
 ```
 If you have replicates that are clear outliers, you might consider removing them from your study as potential confounders. If it's clear that you have a [batch effect](http://www.nature.com/nrg/journal/v11/n10/full/nrg2825.html), you'll want to eliminate the batch effect during your downstream analysis of differential expression.
 
+------
 
-## Chapeter 6: Extended version of DESeq2 analysis in R
+<div id='id-section7'/>
+
+## Chapeter 7: Extended version of DESeq2 analysis in R
 
 **scp the gene.matrix to your MAC and then arrange the treatment to the fashion**. For installing softwares if error is coming do all the steps of installing that you did in the server.
 **TREATMENT DETAILS**
@@ -658,7 +663,13 @@ legend( x="topright",
         pch=c(20,20,20,20), merge=FALSE, cex = 0.75)
 dev.off()
 ```
-## Chapeter 7: Transdecoder and Gene Annotation
+
+------
+
+<div id='id-section8'/>
+
+
+## Chapeter 8: Transdecoder and Gene Annotation
 
 ***Step 1: extract the long open reading frames by Transdecoder***
 
@@ -1000,7 +1011,10 @@ write.csv(data2, file = "Erharta_Merged_freezing_conserved_annotated.csv")
 ```
 5. Now cut the column 8 and paste it after column 1.
 
-## Chapter8: Go annotation
+------
+<div id='id-section9'/>
+
+## Chapter 9: Go annotation (uniprot)
 
 1. Take the **Merged_freezing_conserved_annotated.xlsx** file and copy the query ID
 2. Now go to the uniprot website [http://www.uniprot.org/uploadlists/](http://www.uniprot.org/uploadlists/).
@@ -1011,7 +1025,11 @@ write.csv(data2, file = "Erharta_Merged_freezing_conserved_annotated.csv")
 7. Click on the “download” button to download your data as a tab separated format.
 8. Open in text viewer and copy it in a excel and save as csv.
 
-## Chapter9: Orthofinder
+------
+<div id='id-section10'/>
+
+
+## Chapter10: Orthofinder
 
 1. Go to https://github.com/davidemms/OrthoFinder/releases and copy link address (OrthoFinder_glibc-2.15.tar.gz) then to **wget** to download to your software directory.
 
