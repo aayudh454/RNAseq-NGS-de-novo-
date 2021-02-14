@@ -1156,5 +1156,7 @@ cd $INPUT_DIR
 $OrthoFinder_dir/orthofinder -f /users/a/a/aadas/Erharta_data_analysis/orthofinder_try
 ```
 
-SRA Toolkit
+**SRA Toolkit**
+```
 export PATH=$PATH:/users/a/a/aadas/Bin/sratoolkit.2.10.9-ubuntu64/bin
+```
