@@ -1165,4 +1165,5 @@ or
 
 ```
 module load sratoolkit-2.9.6-gcc-7.3.0-65lpczt
+fastq-dump --split-files --origfmt --gzip SRR6127941.1
 ```
