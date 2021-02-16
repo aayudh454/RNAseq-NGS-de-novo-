@@ -260,7 +260,7 @@ SOFTWAREDIR=/users/a/a/aadas/Bin/trinityrnaseq-2.1.1
 WORKINGDIR=/users/a/a/aadas/Erharta_data_analysis/assembly_erharta
 cd $WORKINGDIR
 
-/users/a/a/aadas/Bin/trinityrnaseq-2.1.1/Trinity --seqType fq --normalize_reads --max_memory 256G --left /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/ Erharta.R1.trimmed.fq –right /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/Erharta.R2.trimmed.fq --CPU 24
+/users/a/a/aadas/Bin/trinityrnaseq-2.1.1/Trinity --seqType fq --normalize_reads --max_memory 256G --left /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/Erharta.R1.trimmed.fq –right /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/Erharta.R2.trimmed.fq --CPU 24
 ```
 
 Make your script executable. You should be the folder where you saved your script
@@ -1164,6 +1164,7 @@ fastq-dump -I --split-files SRR6127940.1
 or
 
 ```
+wget https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos1/sra-pub-run-1/SRR6127933/SRR6127933.1
 module load sratoolkit-2.9.6-gcc-7.3.0-65lpczt
-fastq-dump --split-files --origfmt --gzip SRR6127941.1
+fastq-dump --split-files --origfmt --gzip SRR6127933.1
 ```
