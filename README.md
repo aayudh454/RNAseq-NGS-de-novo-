@@ -260,7 +260,7 @@ SOFTWAREDIR=/users/a/a/aadas/Bin/trinityrnaseq-2.1.1
 WORKINGDIR=/users/a/a/aadas/Erharta_data_analysis/assembly_erharta
 cd $WORKINGDIR
 
-/users/a/a/aadas/Bin/trinityrnaseq-2.1.1/Trinity --seqType fq --normalize_reads --max_memory 256G --left /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/Erharta.R1.trimmed.fq –right /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/Erharta.R2.trimmed.fq --CPU 24
+/users/a/a/aadas/Bin/trinityrnaseq-2.1.1/Trinity --seqType fq --normalize_reads --max_memory 256G --left /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/Erharta.R1.trimmed.fq --right /users/a/a/aadas/Erharta_data_analysis/assembly_erharta/Erharta.R2.trimmed.fq --CPU 24
 ```
 
 Make your script executable. You should be the folder where you saved your script
