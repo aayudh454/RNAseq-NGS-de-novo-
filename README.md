@@ -1157,11 +1157,7 @@ $OrthoFinder_dir/orthofinder -f /users/a/a/aadas/Erharta_data_analysis/orthofind
 ```
 
 **SRA Toolkit**
-```
-export PATH=$PATH:/users/a/a/aadas/Bin/sratoolkit.2.10.9-ubuntu64/bin
-fastq-dump -I --split-files SRR6127940.1
-```
-or
+Getting data from SRA (https://www.ncbi.nlm.nih.gov/sra). 
 
 ```
 wget https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos1/sra-pub-run-1/SRR6127933/SRR6127933.1
