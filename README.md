@@ -1164,3 +1164,25 @@ wget https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos1/sra-pub-run-1/SRR6127933/
 module load sratoolkit-2.9.6-gcc-7.3.0-65lpczt
 fastq-dump --split-files --origfmt --gzip SRR6127933.1
 ```
+or after wget just run a script
+
+```
+#!/bin/bash
+
+#SBATCH --partition=bigmem
+#SBATCH --nodes=1
+#SBATCH --ntasks=2
+#SBATCH --time=06:00:00
+#SBATCH --mem=16G
+#SBATCH --job
+#SBATCH --output=Aayudh.out
+#SBATCH --mail-user=aadas@uvm.edu
+#SBATCH --mail-type=ALL
+
+workDIR=/users/a/a/aadas/2nd_chapter_RNASEQ/nassella_trimming/6wkcold_nassella_rep2
+
+module load sratoolkit-2.9.6-gcc-7.3.0-65lpczt
+ulimit -s unlimited
+
+fastq-dump --split-files --origfmt --gzip $workDIR/SRR6127937.1
+```
