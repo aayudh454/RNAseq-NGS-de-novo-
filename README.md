@@ -914,6 +914,8 @@ for(my $i=1;$i<=$split_count;$i++){
 
 Then (**When you run the 3rd script; generally it's submitting 300 jobs to VACC but it's not going to run; So, comment out blast-then it's only submitting hmm scan; Even if doesn't work then edit blast-part* and manually put part-1* then part-2*  **)
 
+*Before running the 3rd script, copy the trinity fasta and longest_orfs ../ one folder back and run the 3rd script from their NOT inside of Trinity.fasta.transdecoder_dir*
+
 ```
 #!/bin/bash
 cd `pwd`
