@@ -1192,6 +1192,7 @@ fastq-dump --split-files --origfmt --gzip $workDIR/SRR6127937.1
 ```
 ------
 <div id='id-section11'/>
+
 ## Chapter11: Enrichment analysis
 
 1. Paste uniprot ID column (format: Q9SJW9) in http://geneontology.org/
