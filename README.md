@@ -1188,3 +1188,32 @@ ulimit -s unlimited
 
 fastq-dump --split-files --origfmt --gzip $workDIR/SRR6127937.1
 ```
+
+## Chapter11: Enrichment analysis
+
+1. Paste uniprot ID column (format: Q9SJW9) in http://geneontology.org/
+2. Use Biological process and Arabidopsis as organism.
+3. launch and download the table.
+4. Then use the R code-
+
+```
+setwd("~/OneDrive - University of Vermont/Nassella_Brachypodium_data analysis/Enrichment analysis")
+list.files()
+data <- read.csv("Bdis_npul_cold_conserved enrichment.csv")
+head(data)
+library("ggplot2")
+
+
+tiff("Nasella_Brachy_cold_enrichment.tiff", width = 9, height = 7.5, units = 'in', res = 300)
+ggplot(data, aes(x =upload_1..fold.Enrichment. , y = GO.biological.process.complete, 
+                 size = upload_1..raw.P.value., fill = upload_1..FDR.)) +
+  geom_point(shape = 21) +
+  labs(x = "Fold Enrichment", y = "Biological Process",
+       size = "pvalue", fill = "FDR")+
+theme_classic() +
+  theme(legend.position="none",text=element_text(size=18, colour = "black", family="Times"),
+        axis.line = element_line(size=0.5, colour = "black"),
+        axis.text.x=element_text(colour="black", size = 18),
+        axis.text.y=element_text(colour="black", size = 12))
+dev.off()
+```
