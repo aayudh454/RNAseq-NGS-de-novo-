@@ -1198,7 +1198,8 @@ fastq-dump --split-files --origfmt --gzip $workDIR/SRR6127937.1
 1. Paste uniprot ID column (format: Q9SJW9) in http://geneontology.org/
 2. Use Biological process and Arabidopsis as organism.
 3. launch and download the table.
-4. Then use the R code-
+4. To capitalize the first letter of the BIOlogical processes use =UPPER(LEFT(A2,1))&RIGHT(A2,LEN(A2)-1)
+5. Then use the R code-
 
 ```
 setwd("~/OneDrive - University of Vermont/Nassella_Brachypodium_data analysis/Enrichment analysis")
