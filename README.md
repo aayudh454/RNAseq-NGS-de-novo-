@@ -215,6 +215,12 @@ Now copy all **R1_paired.fq.gz** and **R2.paired.fq.gz** of all treatment into a
 ```
 both shows 150563683; That means R1 and R2 has same reads.
 
+***Another way of counting fasta files***
+
+```
+ echo $(cat Brachy.R1.trimmed.fq|wc -l)/4|bc
+```
+
 ------
 
 <div id='id-section3'/>
