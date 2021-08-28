@@ -1222,3 +1222,9 @@ theme_classic() +
         axis.text.y=element_text(colour="black", size = 12))
 dev.off()
 ```
+------
+<div id='id-section12'/>
+
+## Chapter12: KEGG analysis
+
+1. KEGG ID conversion: GO to https://www.genome.jp/kegg/tool/conv_id.html. Then use 20 inputs of uniport id (eg: D9J0Z7) 
