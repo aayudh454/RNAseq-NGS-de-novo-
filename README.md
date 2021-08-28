@@ -1228,4 +1228,4 @@ dev.off()
 
 ## Chapter12: KEGG analysis
 
-1. KEGG ID conversion: GO to https://www.genome.jp/kegg/tool/conv_id.html. Then use 20 inputs of uniport id (eg: D9J0Z7) 
+1. KEGG ID conversion: GO to https://www.genome.jp/kegg/tool/conv_id.html. Then use 20 inputs of uniport id (eg: D9J0Z7). Select organism ath, then exec. 
