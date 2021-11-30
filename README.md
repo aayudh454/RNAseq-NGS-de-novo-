@@ -610,8 +610,14 @@ list.files()
 library("DESeq2")
 library("ggplot2")
 
-#Erharta Control_vs_Freezing
-countsTable <- read.delim('Erharta.genes.counts.matrix.txt', header=TRUE, stringsAsFactors=TRUE, row.names=1)
+#Erharta Control_vs_Freezing (Same as example of Nassella)
+setwd("~/OneDrive - University of Vermont/Freezing tolerance/Nassella Freezing")
+list.files()
+library("DESeq2")
+library("ggplot2")
+
+#Nassella Control_vs_Freezing
+countsTable <- read.delim('Nassella.genes.counts.matrix.txt', header=TRUE, stringsAsFactors=TRUE, row.names=1)
 #Choose control and freezing replicates column from the table
 countData=as.matrix(countsTable[,c(1,2,3,7,8,9)]) #Choose control and freezing replicates from the table
 storage.mode(countData) = "integer"
@@ -635,42 +641,97 @@ dds <- dds[ rowSums(counts(dds)) > 1, ]
 dim(dds)
 dds <- DESeq(dds) 
 res <- results(dds)
-#sorts according to pvalue
+#sorts according to padj
 res <- res[order(res$padj),]
 head(res)
 summary(res)
+
+#Subsetting based on padj 0.05 and LogFC2
+x.sub <- subset(res, padj < 0.05)
+y.sub <- as.data.frame(x.sub)
+
+y.sub1 <- subset(y.sub, log2FoldChange>2)
+z.sub <- subset(y.sub, log2FoldChange < -2)
+sub_data <- rbind (y.sub1,z.sub)
+
 summary(sub_data)
-#Subsetting based on pvalue 0.01
-x.sub <- subset(res, padj < 0.01)
-sub_data=as.data.frame(x.sub)
-y.sub <- subset(res, pvalue < 0.001)
-y.sub1 = as.data.frame(y.sub)
-z.sub <- subset(res, padj < 0.0001)
-z.sub1 =  as.data.frame(z.sub)
+dim(sub_data)
+head (sub_data)
+
 #Up and Downregulated genes
-table(sign(y.sub1$log2FoldChange))
+table(sign(sub_data$log2FoldChange))
+
 #save as csv
-write.csv(z.sub1, file = "z.sub1.csv")
+write.csv(sub_data, file = "Nassella_freezing_p0.05_LogFC2.csv")
 
-#MA plot
 
-plotMA(res, main="Erharta_controlvsFreezing", ylim=c(-12,12), xlim=c(1e-01, 1e+04))
-abline(h=c(-1:1), col="red")
+#plotMA(res, main="Nassella_controlvscold", ylim=c(-12,12), xlim=c(1e-01, 1e+04))
+#abline(h=c(-1:1), col="red")
 #Volcano plot
-tiff("Erharta_controlvsFreezing.tiff", width = 9.97, height = 6.5, units = 'in', res = 300)
+tiff("Nassella_controlvsfreezing.tiff", width = 5, height = 5, units = 'in', res = 300)
 par(family="Times")
+par(pty="s")
 volcanoData <- as.data.frame(sub_data[,c(2,5,6)])
-with(volcanoData, plot(log2FoldChange, -log10(pvalue), pch=20,lwd=4, main="Erharta Control vs Freezing", xlim=c(-12,13), ylim = c(0,30)))
+with(volcanoData, plot(log2FoldChange, -log10(padj), pch=20,lwd=4, main="Nassella Control vs Freezing", 
+                       xlim=c(-12,12), ylim = c(0,50)))
 # Add colored points: red if padj<0.05, orange of log2FC>1, green if both)
-with(subset(volcanoData, padj<.001 ), points(log2FoldChange, -log10(pvalue), pch=20, col="red"))
-with(subset(volcanoData, abs(log2FoldChange)>5), points(log2FoldChange, -log10(pvalue), pch=20, col="orange"))
-with(subset(volcanoData, padj<.001 & abs(log2FoldChange)>5), points(log2FoldChange, -log10(pvalue), pch=20, col="green"))
-with(subset(volcanoData, padj<.0001 & abs(log2FoldChange)>5), points(log2FoldChange, -log10(pvalue), pch=20, col="blue"))
-legend( x="topright", 
-        legend=c("padj<0.001 and log2(FC)>5","log2(FC)>5","padj<0.001","padj<0.01 and log2(FC)>2"), 
-        col=c("green","orange","red","black"), lwd=4, lty=c(NA,NA,NA,NA), 
-        pch=c(20,20,20,20), merge=FALSE, cex = 0.75)
+with(subset(volcanoData, padj<.001 ), points(log2FoldChange, -log10(padj), pch=20, col="red"))
+with(subset(volcanoData, abs(log2FoldChange)>5), points(log2FoldChange, -log10(padj), pch=20, col="orange"))
+with(subset(volcanoData, padj<.001 & abs(log2FoldChange)>5), points(log2FoldChange, -log10(padj), pch=20, col="green"))
+with(subset(volcanoData, padj<.0001 & abs(log2FoldChange)>5), points(log2FoldChange, -log10(padj), pch=20, col="blue"))
+#legend( x="topright", 
+        #legend=c("padj<0.001 and log2(FC)>2","log2(FC)>5","padj<0.001","padj<0.001 and log2(FC)>5"), 
+        #col=c("green","orange","red","blue"), lwd=4, lty=c(NA,NA,NA,NA), 
+        #pch=c(20,20,20,20), merge=FALSE, cex = 0.75)
 dev.off()
+
+#merge with blast output
+list.files()
+data <- read.csv("Nassella_blastp.csv")
+data1 <- read.csv("Nassella_freezing_p0.05_LogFC2.csv")
+head(data)
+head(data1)
+#merge data by ID
+merged_data<- merge(data1,data, by="Trinity_ID")
+head(merged_data)
+dim(merged_data)
+
+#Delete repeated column
+library(dplyr)
+merged_data_final <- merged_data %>% distinct
+head(merged_data_final)
+dim(merged_data_final)
+
+merged_data_final <- as.data.frame(merged_data)
+head(merged_data_final)
+
+#Save as csv file
+write.csv(merged_data_final, file = "Nassella_freezing_uniprot.csv")
+
+##Now follow the steps for GO terms and GO terms csv.
+
+#Now make all data in one file 
+list.files()
+data <- read.csv("Nassella_freezing_uniprot.csv")
+data1 <- read.csv("Nassella_freezing_GO.csv")
+#merge data by ID
+merged_data<- merge(data,data1, by="Uniprot_ID")
+head(merged_data)
+dim(merged_data)
+merged_data_final <- as.data.frame(merged_data)
+head(merged_data_final)
+dim(merged_data_final)
+
+library(data.table)
+MASTER_data <- unique(setDT(merged_data_final)[order(Uniprot_ID, -Uniprot_ID)], by = "Uniprot_ID")
+
+#Save as csv file
+write.csv(MASTER_data, file = "Nassella_FREEZING_MasterDATA.csv")
+
+Nas_cold <- read.csv("Nassella_FREEZING_MasterDATA.csv")
+#Up and Downregulated genes
+table(sign(Nas_cold$log2FoldChange))
+
 ```
 
 ------
