@@ -1275,24 +1275,26 @@ fastq-dump --split-files --origfmt --gzip $workDIR/SRR6127937.1
 5. Then use the R code-
 
 ```
-setwd("~/OneDrive - University of Vermont/Nassella_Brachypodium_data analysis/Enrichment analysis")
+setwd("~/OneDrive - University of Vermont/Freezing tolerance/Nassella Freezing/Enrichment_nassella freezing")
 list.files()
-data <- read.csv("Bdis_npul_cold_conserved enrichment.csv")
+data <- read.csv("Nassella_freezing_enrichment.csv")
 head(data)
 library("ggplot2")
 
 
-tiff("Nasella_Brachy_cold_enrichment.tiff", width = 9, height = 7.5, units = 'in', res = 300)
-ggplot(data, aes(x =upload_1..fold.Enrichment. , y = GO.biological.process.complete, 
-                 size = upload_1..raw.P.value., fill = upload_1..FDR.)) +
+tiff("Nassella_freezing_enrichment.tiff", width = 9, height = 7.5, units = 'in', res = 300)
+ggplot(data, aes(x =fold.Enrichment, y = GO.biological.process.complete, 
+                 size = P.value, fill = FDR)) +
   geom_point(shape = 21) +
-  labs(x = "Fold Enrichment", y = "Biological Process",
+  labs(x = "Fold Enrichment", y = "Biological Process (Nassella_freezing)",
        size = "pvalue", fill = "FDR")+
-theme_classic() +
-  theme(legend.position="none",text=element_text(size=18, colour = "black", family="Times"),
+  scale_fill_gradient(low="#CC6666", high="#9999CC")+
+  theme_classic() +
+  theme(legend.position="right",text=element_text(size=18, colour = "black", family="Times"),
         axis.line = element_line(size=0.5, colour = "black"),
         axis.text.x=element_text(colour="black", size = 18),
-        axis.text.y=element_text(colour="black", size = 12))
+        axis.text.y=element_text(colour="black", size = 10),
+        panel.border = element_rect(colour = "black", fill=NA, size=1))
 dev.off()
 ```
 ------
