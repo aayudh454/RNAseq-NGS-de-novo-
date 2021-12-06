@@ -1096,6 +1096,11 @@ write.csv(data2, file = "Erharta_Merged_freezing_conserved_annotated.csv")
 6. Click on the “columns” to add all five Gene Ontology columns, KEGG (under 'Genome Annotation'), and PANTHER and Pfam (under 'Family and Domains'). 
 7. Click on the “download” button to download your data as a tab separated format.
 8. Open in text viewer and copy it in a excel and save as csv.
+9. Extract gene names from uniprot iD
+```
+=LEFT(A2, FIND("_",A2)-1)
+```
+
 
 ------
 <div id='id-section10'/>
