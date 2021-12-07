@@ -734,6 +734,32 @@ table(sign(Nas_cold$log2FoldChange))
 
 ```
 
+Making heatmap using R
+
+```
+setwd("~/OneDrive - University of Vermont/Freezing tolerance/Freezing conserved")
+list.files()
+
+library("gplots")
+
+data <-  read.table("Ehr_Npul_freezing_heatmap.csv", sep=",", header=TRUE, row.names=1)
+mat_data <- data.matrix(data[,1:ncol(data)])
+my_palette <- colorRampPalette(c("red", "yellow", "green"))(n = 299)
+
+setwd("~/OneDrive - University of Vermont/Freezing tolerance/Freezing conserved")
+tiff("Ehr_Npul_freezing_conserved.tiff", width = 8, height = 15, units = 'in', res = 300)
+par(family="Times")
+heatmap.2(mat_data,
+          notecol="black",      # change font color of cell labels to black
+          density.info="none",  # turns off density plot inside color legend
+          trace="none",         # turns off trace lines inside the heat map
+          margins =c(6,6),     # widens margins around plot
+          col=my_palette,       # use on color palette defined earlier
+          dendrogram="row",     # only draw a row dendrogram
+          Colv="NA",cexRow=1)  
+dev.off()
+```
+
 ------
 
 <div id='id-section8'/>
