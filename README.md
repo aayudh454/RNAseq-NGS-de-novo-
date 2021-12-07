@@ -734,7 +734,7 @@ table(sign(Nas_cold$log2FoldChange))
 
 ```
 
-**Making heatmap using R**
+**Making heatmap using R using log fold change values**
 
 ```
 setwd("~/OneDrive - University of Vermont/Freezing tolerance/Freezing conserved")
