@@ -1126,7 +1126,11 @@ write.csv(data2, file = "Erharta_Merged_freezing_conserved_annotated.csv")
 ```
 =LEFT(A2, FIND("_",A2)-1)
 ```
+to count NA in excel
 
+``
+=COUNTIF(E2:E150, "NA")
+``
 
 ------
 <div id='id-section10'/>
