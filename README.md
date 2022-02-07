@@ -1333,5 +1333,6 @@ dev.off()
 ## Chapter12: KEGG analysis
 
 1. KEGG ID conversion: GO to https://www.genome.jp/kegg/tool/conv_id.html. Then use 20 inputs of uniport id (eg: D9J0Z7). Select **Outside DB: Uniport, organism ath**, then exec. Input organism code if it's a different one.
-2. Now go to https://www.genome.jp/kegg/mapper/search.html. Use organism ath for Arabidopsis in **other org** box. paste codes (eg-ath:AT3G28610)
+2. If you are using uniprot based data sheet then from KEGG IDs remove the ':' in the end by using =LEFT(A2, LEN(A2) - 1).
+3. Now go to https://www.genome.jp/kegg/mapper/search.html. Use organism ath for Arabidopsis in **other org** box. paste codes (eg-ath:AT3G28610)
 and exec.
