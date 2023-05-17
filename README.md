@@ -1367,7 +1367,7 @@ Screening and validation: The final step involves screening and validating the c
 
 #### Adapters used 
 
-The adapter commonly used in Illumina HiSeq sequencing platforms is known as the "TruSeq Adapter." The TruSeq Adapter is designed to facilitate the attachment of sequencing primers to the DNA fragments during library preparation. It contains specific sequences required for proper binding and amplification during the sequencing process. The TruSeq Adapter is compatible with various Illumina library preparation kits and is widely used in Illumina HiSeq sequencing workflows.
+The adapter commonly used in Illumina HiSeq sequencing platforms is known as the **"TruSeq Adapter."** The TruSeq Adapter is designed to facilitate the attachment of sequencing primers to the DNA fragments during library preparation. It contains specific sequences required for proper binding and amplification during the sequencing process. The TruSeq Adapter is compatible with various Illumina library preparation kits and is widely used in Illumina HiSeq sequencing workflows.
 
 #### How to calculate the coverage per nucleotide in RNA-seq?
 
@@ -1388,3 +1388,20 @@ Estimate Sequencing Runs:
 
 The Lander/Waterman equation1 is a method for computing genome coverage. The general equation is: **C (coverage) = L(read length) * N (the number of reads) / G (haploid genome length)**
 
+### RNA-seq quality check
+
+Performing quality checks on RNA-seq data is crucial to ensure reliable and accurate results. Here are some commonly used methods for RNA-seq quality check:
+
+FastQC: FastQC is a widely used tool for assessing the quality of sequencing data. It provides a comprehensive analysis of various quality metrics such as per-base sequence quality, sequence length distribution, GC content, overrepresented sequences, adapter content, and more. FastQC generates detailed reports and visualizations to identify potential issues in the data.
+
+Read Distribution: Examining the distribution of reads across different genomic features can provide insights into the quality of RNA-seq data. Tools like RNA-SeQC or RSeQC can be used to assess the distribution of reads across exons, introns, intergenic regions, ribosomal RNA (rRNA), and other genomic features.
+
+Mapping Statistics: Aligning RNA-seq reads to a reference genome or transcriptome can provide information about mapping efficiency and potential biases. Tools such as STAR, HISAT2, or Bowtie can be used to generate mapping statistics, including alignment rates, multi-mapping rates, and strand specificity.
+
+Gene Body Coverage: Analyzing the coverage of reads across gene bodies can assess the uniformity of coverage and potential biases. Tools like RSeQC or QualiMap can generate gene body coverage plots and metrics to evaluate the evenness of coverage.
+
+Transcript Integrity: Assessing transcript integrity helps to identify potential degradation or bias in the RNA-seq data. Tools like RSeQC or RNA-SeQC can estimate transcript integrity based on metrics such as 3' to 5' bias, coverage uniformity, or junction saturation analysis.
+
+Reproducibility Analysis: If you have replicate samples, assessing the reproducibility between them is important. Tools like MultiQC or DESeq2 can be used to generate correlation plots, Principal Component Analysis (PCA), or perform differential gene expression analysis to evaluate the consistency between replicates.
+
+It's important to note that the choice of tools and methods may vary depending on the specific requirements and analysis goals of the RNA-seq experiment.
