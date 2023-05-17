@@ -31,7 +31,12 @@ C= Control, D=Drought, F=Freezing
 * [Page 10 2020-12-22](#id-section10). Chapter10: Orthofinder
 
 * [Page 11 2021-04-06](#id-section11). Chapter11: Enrichment Analysis
+
 * [Page 12 2021-04-06](#id-section12). Chapter12: KEGG Analysis
+
+* [Page 12 2023-05-17](#id-section13). Chapter13: NGS FAQ
+
+
 
 
 ------
@@ -1336,3 +1341,10 @@ dev.off()
 2. If you are using uniprot based data sheet then from KEGG IDs remove the ':' in the end by using =LEFT(A2, LEN(A2) - 1).
 3. Now go to https://www.genome.jp/kegg/mapper/search.html. Use organism ath for Arabidopsis in **other org** box. paste codes (eg-ath:AT3G28610)
 and exec.
+
+------
+<div id='id-section13'/>
+
+## Chapter13: NGS FAQ
+
+
