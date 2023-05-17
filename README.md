@@ -34,7 +34,7 @@ C= Control, D=Drought, F=Freezing
 
 * [Page 12 2021-04-06](#id-section12). Chapter12: KEGG Analysis
 
-* [Page 12 2023-05-17](#id-section13). Chapter13: NGS FAQ
+* [Page 13 2023-05-17](#id-section13). Chapter13: NGS FAQ
 
 
 
@@ -1347,4 +1347,44 @@ and exec.
 
 ## Chapter13: NGS FAQ
 
+### cDNA library prep:
+To perform RNA sequencing (RNA-seq), a library preparation is required. Library preparation involves converting the RNA molecules from a sample into a library of cDNA (complementary DNA) fragments that can be sequenced. 
+
+#### Steps
+To create a cDNA (complementary DNA) library, several steps are involved. The cDNA library is a collection of cloned cDNA fragments that represent the expressed genes of an organism [4]. Here are the general steps to make a cDNA library:
+
+Isolation of mRNA: The first step is to isolate cellular mRNA from the sample. This mRNA extract should represent all of the transcripts in the cells at the time of isolation, known as the transcriptome [1].
+
+Reverse transcription: The isolated mRNA is then reverse transcribed into cDNA using reverse transcriptase enzyme and oligo(dT) primers. Reverse transcription converts the mRNA into complementary DNA (cDNA) molecules, which represent the genetic information of the expressed genes [2].
+
+Second-strand synthesis: After reverse transcription, the single-stranded cDNA is converted into double-stranded cDNA using DNA polymerase and DNA ligase. This step involves the synthesis of the complementary strand to the cDNA template [2].
+
+Cloning: The double-stranded cDNA fragments are then ligated into a suitable cloning vector, such as a plasmid or a viral vector. This step allows for the incorporation of the cDNA fragments into host cells, forming a library [4].
+
+Transformation: The ligated cDNA vectors are introduced into host cells, typically bacteria such as Escherichia coli. This process is known as transformation, where the host cells take up the vectors carrying the cDNA fragments [6].
+
+Screening and validation: The final step involves screening and validating the cDNA library to ensure the presence of the desired cDNA fragments and correct plasmids. Various screening methods, such as transformation and replica plating, are used to select transformed cells carrying the cDNA of interest [6].
+
+#### Adapters used 
+
+The adapter commonly used in Illumina HiSeq sequencing platforms is known as the "TruSeq Adapter." The TruSeq Adapter is designed to facilitate the attachment of sequencing primers to the DNA fragments during library preparation. It contains specific sequences required for proper binding and amplification during the sequencing process. The TruSeq Adapter is compatible with various Illumina library preparation kits and is widely used in Illumina HiSeq sequencing workflows.
+
+#### How to calculate the coverage per nucleotide in RNA-seq?
+
+Obtain the total number of reads: Determine the total number of reads generated from your RNA-seq experiment. This information can usually be obtained from the sequencing data files.
+
+Align reads to the reference genome/transcriptome: Use a bioinformatics tool, such as STAR, HISAT2, or Bowtie, to align the sequencing reads to a reference genome or transcriptome. This step assigns each read to a specific genomic location.
+
+Count the number of reads per nucleotide: Once the reads are aligned, you can count the number of reads that align to each nucleotide position in the reference. This can be done using tools like SAMtools or BEDtools. The resulting output will provide read counts per nucleotide.
+
+Normalize the counts: Normalize the read counts by the total number of aligned reads and the length of the reference sequence. This step accounts for differences in sequencing depth and allows for comparison between samples. The normalized value represents the coverage per nucleotide.
+
+The formula to calculate coverage per nucleotide is:
+
+**Coverage per nucleotide = (Number of reads aligned to a specific nucleotide) / (Total number of aligned reads * Reference sequence length)**
+
+How to Estimate and Achieve Your Desired NGS Coverage Level?
+Estimate Sequencing Runs:
+
+The Lander/Waterman equation1 is a method for computing genome coverage. The general equation is: **C (coverage) = L(read length) * N (the number of reads) / G (haploid genome length)**
 
