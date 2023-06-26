@@ -740,7 +740,7 @@ table(sign(Nas_cold$log2FoldChange))
 
 ```
 
-![alt text](https://github.com/aayudh454/Erharta/blob/main/Freezing-Drought_deseq.tiff)
+![alt text](https://github.com/aayudh454/Erharta/blob/main/Freezing-Drought_deseq.png)
 
 **Making heatmap using R using log fold change values**
 
