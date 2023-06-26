@@ -767,6 +767,7 @@ heatmap.2(mat_data,
           Colv="NA",cexRow=1)  
 dev.off()
 ```
+![alt text](https://github.com/aayudh454/Erharta/blob/main/heatmap.png)
 
 ------
 
