@@ -690,6 +690,9 @@ with(subset(volcanoData, padj<.0001 & abs(log2FoldChange)>5), points(log2FoldCha
         #pch=c(20,20,20,20), merge=FALSE, cex = 0.75)
 dev.off()
 
+![alt text](https://github.com/aayudh454/Erharta/blob/main/Freezing-Drought_deseq.tiff)
+
+
 #merge with blast output
 list.files()
 data <- read.csv("Nassella_blastp.csv")
