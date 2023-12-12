@@ -1346,6 +1346,7 @@ dev.off()
 3. Now go to https://www.genome.jp/kegg/mapper/search.html. Use organism ath for Arabidopsis in **other org** box. paste codes (eg-ath:AT3G28610)
 and exec.
 
+Now run this script after getting this from KEGG
 
 ```
 data <- c("ath01100 Metabolic pathways - Arabidopsis thaliana (thale cress) (8)",
@@ -1389,6 +1390,15 @@ colnames(result_df) <- c('KEGG', 'Pathway', 'Genes')
 
 # Print the result
 print(result_df)
+
+result_df$Genes <- as.numeric(result_df$Genes)
+
+# Calculate the percentage of genes
+result_df$PercentGenes <- round((result_df$Genes / sum(result_df$Genes)) * 100, 1)
+
+# Display the updated data frame
+head(result_df)
+
 ```
 
 ------
