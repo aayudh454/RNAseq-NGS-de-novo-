@@ -1346,6 +1346,51 @@ dev.off()
 3. Now go to https://www.genome.jp/kegg/mapper/search.html. Use organism ath for Arabidopsis in **other org** box. paste codes (eg-ath:AT3G28610)
 and exec.
 
+
+```
+data <- c("ath01100 Metabolic pathways - Arabidopsis thaliana (thale cress) (8)",
+          "ath01110 Biosynthesis of secondary metabolites - Arabidopsis thaliana (thale cress) (7)",
+          "ath04626 Plant-pathogen interaction - Arabidopsis thaliana (thale cress) (4)",
+          "ath02010 ABC transporters - Arabidopsis thaliana (thale cress) (3)",
+          "ath00564 Glycerophospholipid metabolism - Arabidopsis thaliana (thale cress) (2)",
+          "ath00561 Glycerolipid metabolism - Arabidopsis thaliana (thale cress) (2)",
+          "ath00940 Phenylpropanoid biosynthesis - Arabidopsis thaliana (thale cress) (2)",
+          "ath04070 Phosphatidylinositol signaling system - Arabidopsis thaliana (thale cress) (2)",
+          "ath00630 Glyoxylate and dicarboxylate metabolism - Arabidopsis thaliana (thale cress) (1)",
+          "ath00270 Cysteine and methionine metabolism - Arabidopsis thaliana (thale cress) (1)",
+          "ath00260 Glycine, serine and threonine metabolism - Arabidopsis thaliana (thale cress) (1)",
+          "ath01210 2-Oxocarboxylic acid metabolism - Arabidopsis thaliana (thale cress) (1)",
+          "ath00500 Starch and sucrose metabolism - Arabidopsis thaliana (thale cress) (1)",
+          "ath00280 Valine, leucine and isoleucine degradation - Arabidopsis thaliana (thale cress) (1)",
+          "ath04144 Endocytosis - Arabidopsis thaliana (thale cress) (1)",
+          "ath00062 Fatty acid elongation - Arabidopsis thaliana (thale cress) (1)",
+          "ath00250 Alanine, aspartate and glutamate metabolism - Arabidopsis thaliana (thale cress) (1)")
+
+# Create an empty data frame with columns 'KEGG', 'Pathway', and '%Genes'
+result_df <- data.frame(KEGG = character(), Pathway = character(), `%Genes` = character(), stringsAsFactors = FALSE)
+
+# Iterate through each row of the 'data' vector
+for (row in data) {
+  # Extract KEGG
+  KEGG <- substr(row, 1, regexpr(" ", row) - 1)
+  
+  # Extract Pathway
+  Pathway <- gsub("^\\w+\\s(.+?)\\s-.*", "\\1", row)
+  
+  # Extract %Genes
+  Genes <- gsub(".*\\((\\d+)\\)", "\\1", row)
+  
+  # Append the extracted values to the result data frame
+  result_df <- rbind(result_df, c(KEGG, Pathway, Genes))
+}
+
+# Rename the columns
+colnames(result_df) <- c('KEGG', 'Pathway', 'Genes')
+
+# Print the result
+print(result_df)
+```
+
 ------
 <div id='id-section13'/>
 
